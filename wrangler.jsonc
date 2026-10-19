@@ -1,0 +1,9 @@
+// Configuración de Cloudflare Workers: sirve la web estática que genera `npm run build` en dist/.
+{
+  "name": "kerambit-web",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}
