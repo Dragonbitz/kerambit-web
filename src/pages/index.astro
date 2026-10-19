@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Cut from '../components/Cut.astro';
+import Benefits from '../components/Benefits.astro';
+import ContactButtons from '../components/ContactButtons.astro';
+import { ui } from '../i18n/ui';
+
+const t = ui.es;
+---
+
+<Base
+  title="KERAMBIT"
+  description="Equipo de stunts y diseño de acción para cine con más de 20 años de experiencia. Rodaje clásico o híbrido con IA: tú eliges, escena a escena."
+>
+  <Hero />
+  <Cut />
+  <Benefits />
+  <section class="closing">
+    <div class="wrap closing__inner">
+      <p class="mono">Fin de la toma · {t.answerLangs}</p>
+      <h2 class="closing__title">Cuéntanos tu escena.</h2>
+      <p class="closing__text">
+        En qué fase está tu proyecto y cuántas escenas de acción tiene. Concretamos una llamada o videollamada.
+      </p>
+      <ContactButtons />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .closing {
+    padding-block: clamp(5rem, 12vw, 9rem);
+    border-top: 1px solid var(--grey-900);
+  }
+  .closing__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+  .closing__title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+  }
+  .closing__text {
+    color: var(--grey-300);
+    max-width: 50ch;
+  }
+</style>

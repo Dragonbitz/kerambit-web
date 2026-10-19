@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import PageIntro from '../components/PageIntro.astro';
+import ContactButtons from '../components/ContactButtons.astro';
+import Wip from '../components/Wip.astro';
+import { site } from '../config/site';
+import { ui } from '../i18n/ui';
+---
+
+<Base title="Contacto" description="Pide presupuesto o agenda una llamada con KERAMBIT. Respondemos en español, catalán e inglés.">
+  <PageIntro scene="06" title="Contacto">
+    <p>Cuéntanos en qué fase está tu proyecto y cuántas escenas de acción tiene. Concretamos una llamada o videollamada.</p>
+  </PageIntro>
+  <section class="contact">
+    <div class="wrap contact__inner">
+      <div class="contact__person">
+        <p class="mono">Contacto</p>
+        <p class="contact__name">{site.contact.person}</p>
+        <p class="contact__phone">{site.contact.phoneDisplay}</p>
+        <p class="contact__langs">{ui.es.answerLangs}</p>
+      </div>
+      <ContactButtons />
+    </div>
+  </section>
+  <Wip items={['Formulario corto (pendiente elegir el servicio que recibe los mensajes y filtra el spam).', 'Foto de Genaro Rodríguez.', 'Teléfono y email profesional definitivos.']} />
+</Base>
+
+<style>
+  .contact {
+    padding-top: clamp(3rem, 6vw, 5rem);
+  }
+  .contact__inner {
+    display: grid;
+    gap: 2rem;
+  }
+  .contact__name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    margin-top: 0.5rem;
+  }
+  .contact__phone {
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
+    margin-top: 0.25rem;
+  }
+  .contact__langs {
+    color: var(--grey-500);
+    margin-top: 0.75rem;
+  }
+</style>

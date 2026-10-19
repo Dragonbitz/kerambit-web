@@ -1,0 +1,3 @@
+# Fase de pruebas: no indexar. Cambiar al publicar en el dominio definitivo.
+User-agent: *
+Disallow: /

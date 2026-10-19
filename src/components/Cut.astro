@@ -1,0 +1,19 @@
+---
+// Corte entre secciones: la curva del kerambit, con medida.
+interface Props {
+  flip?: boolean;
+  color?: string;
+}
+const { flip = false, color = 'var(--ink)' } = Astro.props;
+---
+
+<svg
+  class="cut"
+  viewBox="0 0 1440 90"
+  preserveAspectRatio="none"
+  aria-hidden="true"
+  style={`color:${color};${flip ? 'transform:scaleX(-1);' : ''}`}
+>
+  <path d="M0 90 L0 70 C 520 70, 980 60, 1440 0 L1440 90 Z" fill="currentColor" />
+  <path d="M0 70 C 520 70, 980 60, 1440 0" fill="none" stroke="var(--grey-700)" stroke-width="1" vector-effect="non-scaling-stroke" />
+</svg>

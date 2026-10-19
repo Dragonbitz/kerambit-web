@@ -1,0 +1,76 @@
+---
+const items = [
+  {
+    title: 'Visión para el director',
+    text: 'Ve cómo puede quedar la escena antes de rodarla: una previsualización grabada y montada.',
+  },
+  {
+    title: 'Guía para el montador',
+    text: 'Una guía de montaje con el ritmo y los cortes que pide la acción. Sin sustituir a nadie.',
+  },
+  {
+    title: 'Presupuesto más ajustado',
+    text: 'Cada departamento sabe qué le toca y cuánto tiempo necesita la escena. Menos improvisación en el set.',
+  },
+];
+---
+
+<section class="benefits" aria-labelledby="benefits-title">
+  <div class="wrap">
+    <h2 id="benefits-title" class="visually-hidden">Qué consigues</h2>
+    <ol class="benefits__list">
+      {items.map((item, i) => (
+        <li class="benefit">
+          <span class="mono benefit__take">Toma {String(i + 1).padStart(2, '0')}</span>
+          <h3 class="benefit__title">{item.title}</h3>
+          <p class="benefit__text">{item.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .benefits {
+    background: var(--ink);
+    padding-block: clamp(4rem, 10vw, 8rem);
+  }
+  .benefits__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--grey-700);
+  }
+  .benefit {
+    padding: 2rem clamp(1rem, 2.5vw, 2.5rem) 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .benefit + .benefit {
+    padding-left: clamp(1rem, 2.5vw, 2.5rem);
+    border-left: 1px solid var(--grey-900);
+  }
+  .benefit__title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+  }
+  .benefit__text {
+    color: var(--grey-300);
+    max-width: 34ch;
+  }
+  @media (max-width: 800px) {
+    .benefits__list {
+      grid-template-columns: 1fr;
+    }
+    .benefit {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--grey-900);
+    }
+    .benefit + .benefit {
+      padding-left: 0;
+      border-left: 0;
+    }
+  }
+</style>

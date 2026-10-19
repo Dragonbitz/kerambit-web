@@ -1,0 +1,63 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import Wip from '../../components/Wip.astro';
+
+// Los cuatro tramos del relevo. Cada uno tendrá su propia página (fase 2).
+const legs = [
+  { n: '01', title: 'Diseño de acción desde guion' },
+  { n: '02', title: 'Previsualización' },
+  { n: '03', title: 'Rodaje' },
+  { n: '04', title: 'Montaje y reshoots' },
+];
+---
+
+<Base title="Servicios" description="Diseño de acción desde guion, previsualización, rodaje y montaje con reshoots. Entra en el tramo que necesites.">
+  <PageIntro scene="02" title="Servicios">
+    <p>Cuatro tramos, como un relevo. Entras en el que necesites. La IA es una opción que atraviesa los cuatro, no un tramo más.</p>
+  </PageIntro>
+  <section class="legs">
+    <ol class="wrap legs__list">
+      {legs.map((l) => (
+        <li class="leg">
+          <span class="mono">Tramo {l.n}</span>
+          <h2 class="leg__title">{l.title}</h2>
+        </li>
+      ))}
+    </ol>
+  </section>
+  <Wip items={['Texto y página propia de cada servicio (prioridad: montaje, reshoots y previsualización).']} />
+</Base>
+
+<style>
+  .legs {
+    padding-top: clamp(3rem, 6vw, 5rem);
+  }
+  .legs__list {
+    list-style: none;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .leg {
+    border-top: 1px solid var(--grey-700);
+    padding: 1.5rem 1.5rem 0 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .leg__title {
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+  }
+  @media (max-width: 900px) {
+    .legs__list {
+      grid-template-columns: 1fr 1fr;
+      row-gap: 2.5rem;
+    }
+  }
+  @media (max-width: 520px) {
+    .legs__list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

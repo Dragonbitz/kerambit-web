@@ -1,0 +1,3 @@
+# Cloudflare Pages. Fase de pruebas: pedir a los buscadores que no indexen nada.
+/*
+  X-Robots-Tag: noindex, nofollow
