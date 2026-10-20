@@ -10,12 +10,14 @@ npm run dev      # http://localhost:4321
 npm run build    # genera la web en dist/
 ```
 
-## Publicación (Cloudflare Pages)
+## Publicación (Cloudflare Workers)
+
+URL de pruebas: https://kerambit-web.thedomeshop.workers.dev
 
 Cada `push` a `main` publica una versión nueva en la URL de pruebas.
 
 - Build command: `npm run build`
-- Build output directory: `dist`
+- Deploy command: `npx wrangler deploy` (lee `wrangler.jsonc`)
 
 ## Dónde se cambia cada cosa
 

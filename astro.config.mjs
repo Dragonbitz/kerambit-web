@@ -2,8 +2,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  // PENDIENTE: dominio definitivo. Mientras tanto, la URL de pruebas de Cloudflare.
-  site: 'https://kerambit-web.pages.dev',
+  // PENDIENTE: dominio definitivo. Mientras tanto, la URL de pruebas de Cloudflare Workers.
+  site: 'https://kerambit-web.thedomeshop.workers.dev',
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'ca', 'en'],
