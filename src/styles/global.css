@@ -8,12 +8,15 @@
 @import '@fontsource/ibm-plex-mono/400.css';
 
 :root {
-  --bg: #3b3b3b; /* fondo general */
-  --bg-alt: #333333; /* secciones alternas */
-  --line-soft: #4a4a4a;
-  --line: #5e5e5e;
-  --text-dim: #a8a8a8;
-  --text-muted: #cacaca;
+  /* Grises por capas, de más profundo a más elevado */
+  --bg-deep: #1b1b1b; /* pie */
+  --bg-alt: #212121; /* secciones alternas */
+  --bg: #262626; /* fondo general */
+  --bg-raised: #2e2e2e; /* tarjetas y recuadros */
+  --line-soft: #363636;
+  --line: #4a4a4a;
+  --text-dim: #9a9a9a;
+  --text-muted: #c6c6c6;
   --white: #f2f2f0;
   /* PENDIENTE: color de acento. De momento, blanco. */
   --accent: var(--white);

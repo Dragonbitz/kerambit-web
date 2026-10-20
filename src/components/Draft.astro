@@ -1,0 +1,16 @@
+---
+// Marca visible de texto en borrador. Solo aparece en la versión de pruebas.
+import { site } from '../config/site';
+---
+
+{site.preview && <span class="mono draft">Texto en borrador</span>}
+
+<style>
+  .draft {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border: 1px dashed var(--line);
+    color: var(--text-dim);
+    font-size: 0.65rem;
+  }
+</style>

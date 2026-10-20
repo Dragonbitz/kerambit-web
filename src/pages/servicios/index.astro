@@ -1,63 +1,102 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageIntro from '../../components/PageIntro.astro';
-import Wip from '../../components/Wip.astro';
-
-// Los cuatro tramos del relevo. Cada uno tendrá su propia página (fase 2).
-const legs = [
-  { n: '01', title: 'Diseño de acción desde guion' },
-  { n: '02', title: 'Previsualización' },
-  { n: '03', title: 'Rodaje' },
-  { n: '04', title: 'Montaje y reshoots' },
-];
+import Relay from '../../components/Relay.astro';
+import Closing from '../../components/Closing.astro';
+import Draft from '../../components/Draft.astro';
+import Icon from '../../components/Icon.astro';
+import { servicios } from '../../data/servicios';
 ---
 
-<Base title="Servicios" description="Diseño de acción desde guion, previsualización, rodaje y montaje con reshoots. Entra en el tramo que necesites.">
+<Base title="Servicios" description="Diseño de acción desde guion, previsualización, rodaje, montaje y reshoots. Entra en el tramo que necesites.">
   <PageIntro scene="02" title="Servicios">
     <p>Cuatro tramos, como un relevo. Entras en el que necesites. La IA es una opción que atraviesa los cuatro, no un tramo más.</p>
   </PageIntro>
-  <section class="legs">
-    <ol class="wrap legs__list">
-      {legs.map((l) => (
-        <li class="leg">
-          <span class="mono">Tramo {l.n}</span>
-          <h2 class="leg__title">{l.title}</h2>
-        </li>
-      ))}
-    </ol>
+
+  <section class="relay-section">
+    <div class="wrap"><Relay /></div>
   </section>
-  <Wip items={['Texto y página propia de cada servicio (prioridad: montaje, reshoots y previsualización).']} />
+
+  <section class="list">
+    <div class="wrap">
+      <Draft />
+      <ul class="list__items">
+        {servicios.map((s) => (
+          <li>
+            <a class="item" href={`/servicios/${s.slug}/`}>
+              <span class="mono item__n">Tramo {s.tramo}</span>
+              <span class="item__title">{s.titulo}</span>
+              <span class="item__text">{s.resumen}</span>
+              <span class="item__arrow"><Icon name="arrow" /></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <Closing />
 </Base>
 
 <style>
-  .legs {
-    padding-top: clamp(3rem, 6vw, 5rem);
+  .relay-section {
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line-soft);
   }
-  .legs__list {
+  .list {
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+  }
+  .list__items {
     list-style: none;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-  }
-  .leg {
+    margin: 1.5rem 0 0;
+    padding: 0;
     border-top: 1px solid var(--line);
-    padding: 1.5rem 1.5rem 0 0;
+  }
+  .item {
     display: grid;
-    gap: 0.75rem;
+    grid-template-columns: 7rem minmax(0, 1.1fr) minmax(0, 1.4fr) 2rem;
+    gap: 1.5rem;
+    align-items: baseline;
+    padding: 1.6rem 0;
+    border-bottom: 1px solid var(--line-soft);
+    text-decoration: none;
+    transition: background 0.3s var(--ease), padding 0.3s var(--ease);
   }
-  .leg__title {
-    font-size: clamp(1.5rem, 2.4vw, 2rem);
+  .item:hover {
+    background: var(--bg-raised);
+    padding-inline: 1rem;
   }
-  @media (max-width: 900px) {
-    .legs__list {
-      grid-template-columns: 1fr 1fr;
-      row-gap: 2.5rem;
+  .item__title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+    line-height: 1.05;
+  }
+  .item__text {
+    color: var(--text-muted);
+  }
+  .item__arrow {
+    color: var(--text-dim);
+    align-self: center;
+  }
+  .item:hover .item__arrow {
+    color: var(--white);
+  }
+  @media (max-width: 760px) {
+    .item {
+      grid-template-columns: 1fr 1.5rem;
+      gap: 0.5rem 1rem;
     }
-  }
-  @media (max-width: 520px) {
-    .legs__list {
-      grid-template-columns: 1fr;
+    .item__n,
+    .item__title,
+    .item__text {
+      grid-column: 1;
+    }
+    .item__arrow {
+      grid-column: 2;
+      grid-row: 1 / span 3;
     }
   }
 </style>

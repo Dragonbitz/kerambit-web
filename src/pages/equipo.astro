@@ -1,12 +1,136 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageIntro from '../components/PageIntro.astro';
-import Wip from '../components/Wip.astro';
+import Closing from '../components/Closing.astro';
+import Draft from '../components/Draft.astro';
+import { equipo } from '../data/equipo';
+import { site, whatsappUrl } from '../config/site';
+
+const initials = (n: string) =>
+  n
+    .split(' ')
+    .map((p) => p[0])
+    .slice(0, 2)
+    .join('');
 ---
 
-<Base title="Equipo" description="El equipo de stunts y diseño de acción de KERAMBIT: más de 20 años en activo.">
+<Base title="Equipo" description="El equipo de stunts y diseño de acción de KERAMBIT: más de 20 años en activo, del guion a la sala de montaje.">
   <PageIntro scene="03" title="Equipo">
-    <p>Más de 20 años diseñando y rodando acción para cine.</p>
+    <p>Un equipo de stunts y diseño de acción con más de 20 años en activo. Llevamos la acción desde el guion hasta la sala de montaje.</p>
   </PageIntro>
-  <Wip items={['Fotos, nombres y bios del equipo.', 'Genaro Rodríguez como cara del contacto.']} />
+
+  <section class="team">
+    <div class="wrap">
+      <Draft />
+      <ul class="team__grid">
+        {equipo.map((m, i) => (
+          <li class:list={['member', { 'member--pending': !m.nombre }]}>
+            <div class="member__photo">
+              {m.foto ? (
+                <img src={m.foto} alt={m.nombre} width="800" height="1000" loading="lazy" />
+              ) : (
+                <span class="member__initials" aria-hidden="true">{m.nombre ? initials(m.nombre) : '—'}</span>
+              )}
+              <span class="vf vf--tl" aria-hidden="true"></span>
+              <span class="vf vf--br" aria-hidden="true"></span>
+              <span class="mono member__take" aria-hidden="true">Toma {String(i + 1).padStart(2, '0')}</span>
+            </div>
+            <p class="mono member__role">{m.rol}</p>
+            <h2 class="member__name">{m.nombre || 'Por confirmar'}</h2>
+            {m.bio && <p class="member__bio">{m.bio}</p>}
+            {m.contacto && (
+              <p class="member__contact">
+                <a href={whatsappUrl()} target="_blank" rel="noopener">{site.contact.phoneDisplay}</a>
+                <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+              </p>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <Closing />
 </Base>
+
+<style>
+  .team {
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+  }
+  .team__grid {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .member {
+    display: grid;
+    align-content: start;
+    gap: 0.5rem;
+  }
+  .member__photo {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: var(--bg-raised);
+    border: 1px solid var(--line-soft);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+  }
+  .member__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1);
+  }
+  .member__initials {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 3.5rem;
+    color: var(--line);
+    letter-spacing: 0.05em;
+  }
+  .vf {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 0 solid rgb(242 242 240 / 0.5);
+  }
+  .vf--tl { top: 10px; left: 10px; border-top-width: 1px; border-left-width: 1px; }
+  .vf--br { bottom: 10px; right: 10px; border-bottom-width: 1px; border-right-width: 1px; }
+  .member__take {
+    position: absolute;
+    bottom: 10px;
+    left: 12px;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+  }
+  .member__name {
+    font-size: clamp(1.5rem, 2.2vw, 1.9rem);
+  }
+  .member--pending .member__name {
+    color: var(--text-dim);
+  }
+  .member__bio {
+    color: var(--text-muted);
+  }
+  .member__contact {
+    display: grid;
+    gap: 0.2rem;
+    margin-top: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+  .member__contact a {
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    justify-self: start;
+  }
+  .member__contact a:hover {
+    color: var(--white);
+  }
+</style>

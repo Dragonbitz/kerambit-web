@@ -1,0 +1,143 @@
+---
+// El relevo de cuatro tramos. La IA no es un tramo: es una franja que los atraviesa todos.
+import { tramos, getServicio } from '../data/servicios';
+
+interface Props {
+  current?: string; // slug del servicio actual
+}
+const { current } = Astro.props;
+---
+
+<nav class="relay" aria-label="Tramos del relevo">
+  <ol class="relay__legs">
+    {tramos.map((t) => {
+      const active = current && t.slugs.includes(current);
+      return (
+        <li class:list={['leg', { 'leg--active': active }]}>
+          <span class="leg__baton" aria-hidden="true"></span>
+          <span class="mono leg__n">Tramo {t.n}</span>
+          {t.slugs.length === 1 ? (
+            <a class="leg__title" href={`/servicios/${t.slugs[0]}/`} aria-current={active ? 'page' : undefined}>
+              {t.titulo}
+            </a>
+          ) : (
+            <span class="leg__title">
+              {t.slugs.map((slug, i) => (
+                <>
+                  {i > 0 && <span class="leg__amp"> y </span>}
+                  <a href={`/servicios/${slug}/`} aria-current={current === slug ? 'page' : undefined}>
+                    {getServicio(slug)?.titulo}
+                  </a>
+                </>
+              ))}
+            </span>
+          )}
+        </li>
+      );
+    })}
+  </ol>
+  <p class="relay__ai">
+    <span class="mono">Opción</span>
+    Rodaje híbrido con IA, en cualquiera de los cuatro tramos
+  </p>
+</nav>
+
+<style>
+  .relay {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .relay__legs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    position: relative;
+  }
+  /* La línea del relevo */
+  .relay__legs::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 5px;
+    height: 1px;
+    background: var(--line);
+  }
+  .leg {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 0.6rem;
+    padding-right: 1.5rem;
+  }
+  .leg__baton {
+    width: 11px;
+    height: 11px;
+    border: 1px solid var(--text-dim);
+    background: var(--bg);
+    transform: rotate(45deg);
+    margin-bottom: 0.75rem;
+    transition: background 0.3s var(--ease);
+  }
+  .leg--active .leg__baton,
+  .leg:hover .leg__baton {
+    background: var(--white);
+    border-color: var(--white);
+  }
+  .leg__title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    line-height: 1.05;
+    color: var(--text-muted);
+  }
+  .leg__title a,
+  a.leg__title {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s var(--ease);
+  }
+  .leg__title a:hover,
+  .leg__title a[aria-current='page'],
+  a.leg__title:hover,
+  a.leg__title[aria-current='page'] {
+    color: var(--white);
+  }
+  .leg__amp {
+    color: var(--text-dim);
+  }
+  .relay__ai {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.9rem 1.1rem;
+    background: var(--bg-raised);
+    border: 1px solid var(--line-soft);
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+  @media (max-width: 860px) {
+    .relay__legs {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+      padding-left: 1.75rem;
+    }
+    .relay__legs::before {
+      left: 5px;
+      right: auto;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      height: auto;
+    }
+    .leg__baton {
+      position: absolute;
+      left: calc(-1.75rem);
+      top: 0.35rem;
+      margin: 0;
+    }
+  }
+</style>

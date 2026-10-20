@@ -1,0 +1,161 @@
+/**
+ * Servicios de KERAMBIT, contados como un relevo de cuatro tramos.
+ * El tramo 04 tiene dos páginas (montaje y reshoots) porque cada una es un tema propio para SEO.
+ *
+ * BORRADOR: todos los textos están pendientes de validar con Jose y el equipo.
+ * Reglas del briefing: sin plazos ni precios, sin "sin riesgo" ni "ahorras X",
+ * sin mencionar técnicas concretas. Usar "reduce el riesgo" y "presupuesto más ajustado".
+ *
+ * Para añadir un servicio nuevo ("Más servicios"), basta con añadir una entrada a esta lista.
+ */
+export interface Servicio {
+  slug: string;
+  tramo: string;
+  titulo: string;
+  /** Frase corta para listados y meta description. */
+  resumen: string;
+  intro: string;
+  secciones: { titulo: string; texto?: string; puntos?: string[] }[];
+  /** Cómo encaja la opción híbrida con IA en este tramo. */
+  ia: string;
+  borrador: boolean;
+}
+
+export const tramos = [
+  { n: '01', titulo: 'Diseño de acción desde guion', slugs: ['diseno-de-accion'] },
+  { n: '02', titulo: 'Previsualización', slugs: ['previsualizacion'] },
+  { n: '03', titulo: 'Rodaje', slugs: ['rodaje'] },
+  { n: '04', titulo: 'Montaje y reshoots', slugs: ['montaje', 'reshoots'] },
+];
+
+export const servicios: Servicio[] = [
+  {
+    slug: 'diseno-de-accion',
+    tramo: '01',
+    titulo: 'Diseño de acción desde guion',
+    resumen: 'Leemos el guion y diseñamos cada escena de acción antes de rodar.',
+    intro:
+      'Partimos del guion, final o provisional. Diseñamos cada escena de acción pensando en la historia, en el tono de la película y en lo que se puede rodar con tu presupuesto.',
+    secciones: [
+      {
+        titulo: 'Qué recibes',
+        puntos: [
+          'Un desglose de las escenas de acción del guion.',
+          'Una propuesta de coreografía y de cómo rodar cada escena.',
+          'Lo que necesita cada departamento: armas, vestuario, efectos y ficticios.',
+          'Datos para que la productora ajuste el presupuesto.',
+        ],
+      },
+      {
+        titulo: 'Cuándo entrar',
+        texto:
+          'En preproducción, cuanto antes mejor. Si el guion todavía cambia, trabajamos sobre la versión provisional y la actualizamos contigo.',
+      },
+    ],
+    ia: 'Si una escena lo pide, te señalamos qué planos pueden rodarse en híbrido con IA para reducir riesgo o tiempo. La decisión es tuya, escena a escena.',
+    borrador: true,
+  },
+  {
+    slug: 'previsualizacion',
+    tramo: '02',
+    titulo: 'Previsualización',
+    resumen: 'Grabamos y montamos la escena antes del rodaje para que todo el equipo sepa qué va a pasar.',
+    intro:
+      'Grabamos la escena con nuestro equipo y la montamos. Dirección, departamentos y stunts la ven antes de llegar al set.',
+    secciones: [
+      {
+        titulo: 'Qué recibes',
+        puntos: [
+          'La escena grabada y montada.',
+          'Una referencia clara para dirección, fotografía y cada departamento.',
+          'Planos y tiempos para calcular si la escena necesita cuatro horas o un día entero.',
+        ],
+      },
+      {
+        titulo: 'Por qué ajusta el presupuesto',
+        texto:
+          'Porque todo el mundo llega al set sabiendo qué va a pasar. Cada departamento ve lo que le toca y el equipo sabe cómo y por dónde rodar cada toma. Menos improvisación, menos tiempo perdido y un presupuesto más ajustado.',
+      },
+    ],
+    ia: 'La previsualización puede incluir planos híbridos para que veas cómo quedarían antes de decidir cómo rodarlos.',
+    borrador: true,
+  },
+  {
+    slug: 'rodaje',
+    tramo: '03',
+    titulo: 'Rodaje',
+    resumen: 'Stunts en el set y, si quieres, rodaje híbrido con IA. Lo eliges escena a escena.',
+    intro:
+      'Coordinamos y ejecutamos la acción en el set con nuestro equipo de stunts. Para cada escena eliges cómo rodarla: clásico o híbrido.',
+    secciones: [
+      {
+        titulo: 'Rodaje clásico',
+        texto: 'Todo se graba en cámara, como siempre.',
+      },
+      {
+        titulo: 'Rodaje híbrido con IA',
+        texto:
+          'Mantiene ese rodaje y usa la IA solo donde reduce riesgo o tiempo. Por ejemplo, un atropello más o menos violento sin que el stunt tenga que darlo todo, o un tiroteo en un espacio cerrado sin fogueo real.',
+      },
+      {
+        titulo: 'El artista, primero',
+        texto:
+          'La IA refuerza al artista, no lo sustituye. El artista cobra igual y el servicio va dentro de la tarifa de stunts.',
+      },
+    ],
+    ia: 'Cuál conviene lo decide la escena. El coste lo vemos juntos en una llamada.',
+    borrador: true,
+  },
+  {
+    slug: 'montaje',
+    tramo: '04',
+    titulo: 'Montaje',
+    resumen: 'Asistencia de montaje en escenas de acción, también en producciones que ya están rodadas.',
+    intro:
+      'Entramos en el montaje cuando la escena es de acción, aunque no hayamos estado en el rodaje. No sustituimos a nadie: ayudamos a que la escena funcione mejor.',
+    secciones: [
+      {
+        titulo: 'Cómo trabajamos',
+        puntos: [
+          'Trabajamos con proxies del material.',
+          'Entregamos una guía de montaje para tu montador, o lo asistimos en la sala.',
+          'Ajustamos ritmo, cortes y nivel de explicitud al tono de la película.',
+        ],
+      },
+      {
+        titulo: 'Qué necesitamos',
+        texto:
+          'Antes de recibir nada firmamos un acuerdo de confidencialidad. Después, una copia del material de la escena. Borramos todo al terminar el proyecto.',
+      },
+    ],
+    ia: 'Si a la escena le falta un plano o necesita cambios, podemos completarla con un reshoot a partir del material rodado.',
+    borrador: true,
+  },
+  {
+    slug: 'reshoots',
+    tramo: '04',
+    titulo: 'Reshoots',
+    resumen: 'Reshoots con IA a partir del material ya rodado, manteniendo personaje, iluminación y set.',
+    intro:
+      'Cuando una escena de acción necesita cambios después del rodaje, partimos siempre del material rodado. No generamos una escena de la nada.',
+    secciones: [
+      {
+        titulo: 'Cómo trabajamos',
+        puntos: [
+          'Partimos del material rodado de la escena.',
+          'Mantenemos la consistencia de personaje, iluminación y set.',
+          'Si tienes datos de cámara, óptica e iluminación, nos ayudan a igualar el resultado.',
+        ],
+      },
+      {
+        titulo: 'Derechos de imagen',
+        texto:
+          'Antes de trabajar con la imagen de un artista, la productora nos confirma por escrito que tiene su autorización firmada. Sin ella, no generamos su rostro: estudiamos contigo otras soluciones de efectos digitales.',
+      },
+    ],
+    ia: 'Es el tramo donde la IA tiene más peso, siempre sobre material real y con las autorizaciones en regla.',
+    borrador: true,
+  },
+];
+
+export const getServicio = (slug: string) => servicios.find((s) => s.slug === slug);

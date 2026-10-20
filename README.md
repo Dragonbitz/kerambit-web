@@ -28,6 +28,8 @@ Cada `push` a `main` publica una versión nueva en la URL de pruebas.
 | Menú y textos de interfaz | `src/i18n/ui.ts` |
 | Titular y subtítulo de portada | `src/components/Hero.astro` |
 | Tres beneficios | `src/components/Benefits.astro` |
+| Textos de los servicios | `src/data/servicios.ts` |
+| Equipo (nombres, bios, fotos) | `src/data/equipo.ts` y fotos en `public/equipo/` |
 | Colores y tipografías | `src/styles/global.css` |
 | Vídeos e imágenes | `public/media/` |
 | Logo (SVG) | `src/assets/` |
@@ -38,8 +40,8 @@ Español en la raíz (`/`). Catalán (`/ca/`) e inglés (`/en/`) están preparad
 
 ## Fases
 
-1. Estructura y portada ← **actual**
-2. Servicios y equipo
+1. Estructura y portada
+2. Servicios y equipo ← **actual** (textos en borrador)
 3. Trabajos y preguntas frecuentes
 4. Contacto, SEO/GEO y datos estructurados
 5. Dominio y publicación (quitar el modo pruebas)
