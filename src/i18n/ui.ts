@@ -26,8 +26,6 @@ export const ui = {
     close: 'Cerrar',
     whatsapp: 'WhatsApp',
     email: 'Email',
-    copy: 'Copiar',
-    copied: 'Copiado',
     contactCta: 'Pide presupuesto',
     answerLangs: 'Respondemos en español, catalán e inglés.',
     wip: 'En preparación',

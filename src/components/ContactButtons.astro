@@ -12,35 +12,11 @@ const { email } = site.contact;
     <Icon name="whatsapp" />
     {t.whatsapp}
   </a>
-  <div class="email">
-    <a class="btn" href={`mailto:${email}`}>
-      <Icon name="mail" />
-      <span>{email}</span>
-    </a>
-    <button class="btn copy" type="button" data-copy={email} aria-label={`${t.copy} email`}>
-      <Icon name="copy" />
-      <span class="copy__label" data-done={t.copied}>{t.copy}</span>
-    </button>
-  </div>
+  <a class="btn email" href={`mailto:${email}`}>
+    <Icon name="mail" />
+    <span>{email}</span>
+  </a>
 </div>
-
-<script>
-  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
-    btn.addEventListener('click', async () => {
-      const label = btn.querySelector<HTMLElement>('.copy__label');
-      try {
-        await navigator.clipboard.writeText(btn.dataset.copy ?? '');
-        if (label) {
-          const prev = label.textContent;
-          label.textContent = label.dataset.done ?? '';
-          setTimeout(() => (label.textContent = prev), 1800);
-        }
-      } catch {
-        /* Sin permiso de portapapeles: el email sigue visible para copiarlo a mano. */
-      }
-    });
-  });
-</script>
 
 <style>
   .contact-buttons {
@@ -49,34 +25,13 @@ const { email } = site.contact;
     gap: 0.75rem;
   }
   .email {
-    display: flex;
-  }
-  .email .btn {
     text-transform: none;
     letter-spacing: 0.04em;
   }
-  .email .copy {
-    border-left: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
   @media (max-width: 480px) {
-    .contact-buttons,
-    .email {
-      width: 100%;
-    }
-    .contact-buttons > .btn,
-    .email .btn:first-child {
-      flex: 1;
-      min-width: 0;
+    .contact-buttons > .btn {
+      flex: 1 1 100%;
       justify-content: center;
-    }
-    .email .copy {
-      padding-inline: 1rem;
-    }
-    .email .btn:first-child span {
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
   }
 </style>

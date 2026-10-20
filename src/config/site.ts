@@ -11,11 +11,10 @@ export const site = {
 
   contact: {
     person: 'Genaro Rodríguez',
-    // PENDIENTE: email profesional.
-    email: 'hola@kerambit.example',
-    // PENDIENTE: teléfono / WhatsApp con prefijo internacional (mismo número para ambos).
-    phoneDisplay: '+34 600 000 000',
-    phoneE164: '34600000000',
+    email: 'kerambit.action@gmail.com',
+    // Teléfono y WhatsApp: mismo número, con prefijo internacional.
+    phoneDisplay: '+34 655 519 325',
+    phoneE164: '34655519325',
     languages: 'español, catalán e inglés',
   },
 

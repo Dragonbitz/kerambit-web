@@ -4,7 +4,7 @@ interface Props {
   flip?: boolean;
   color?: string;
 }
-const { flip = false, color = 'var(--ink)' } = Astro.props;
+const { flip = false, color = 'var(--bg-alt)' } = Astro.props;
 ---
 
 <svg
@@ -15,5 +15,5 @@ const { flip = false, color = 'var(--ink)' } = Astro.props;
   style={`color:${color};${flip ? 'transform:scaleX(-1);' : ''}`}
 >
   <path d="M0 90 L0 70 C 520 70, 980 60, 1440 0 L1440 90 Z" fill="currentColor" />
-  <path d="M0 70 C 520 70, 980 60, 1440 0" fill="none" stroke="var(--grey-700)" stroke-width="1" vector-effect="non-scaling-stroke" />
+  <path d="M0 70 C 520 70, 980 60, 1440 0" fill="none" stroke="var(--line)" stroke-width="1" vector-effect="non-scaling-stroke" />
 </svg>

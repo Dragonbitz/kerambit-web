@@ -1,6 +1,8 @@
 ---
 import { nav, ui } from '../i18n/ui';
 import { site } from '../config/site';
+import emblem from '../assets/kerambit-k.svg?raw';
+import name from '../assets/kerambit-name.svg?raw';
 
 const t = ui.es;
 const links = nav.es;
@@ -9,9 +11,9 @@ const current = Astro.url.pathname;
 
 <header class="header">
   <div class="header__inner wrap">
-    <!-- PENDIENTE: sustituir el texto por el logo en SVG (K con dos kerambits). -->
     <a class="logo" href="/" aria-label={`${site.name}, inicio`}>
-      <span class="logo__k">K</span><span class="logo__rest">ERAMBIT</span>
+      <span class="logo__emblem" set:html={emblem} />
+      <span class="logo__name" set:html={name} />
     </a>
 
     <button class="menu-btn mono" type="button" aria-expanded="false" aria-controls="nav">
@@ -49,7 +51,7 @@ const current = Astro.url.pathname;
     inset: 0 0 auto;
     z-index: 50;
     height: var(--header-h);
-    background: linear-gradient(to bottom, rgb(10 10 10 / 0.75), transparent);
+    background: linear-gradient(to bottom, rgb(59 59 59 / 0.85), transparent);
   }
   .header__inner {
     height: 100%;
@@ -58,16 +60,22 @@ const current = Astro.url.pathname;
     justify-content: space-between;
   }
   .logo {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.5rem;
-    letter-spacing: 0.32em;
-    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--white);
     position: relative;
     z-index: 2;
   }
-  .logo__k {
-    letter-spacing: 0.12em;
+  .logo :global(svg) {
+    height: 100%;
+    width: auto;
+  }
+  .logo__emblem {
+    height: 2.6rem;
+  }
+  .logo__name {
+    height: 1.05rem;
   }
   .nav ul {
     display: flex;
@@ -86,7 +94,7 @@ const current = Astro.url.pathname;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
-    color: var(--grey-300);
+    color: var(--text-muted);
     transition: color 0.3s var(--ease);
   }
   .nav a:hover,
@@ -95,12 +103,12 @@ const current = Astro.url.pathname;
   }
   .nav__num {
     font-size: 0.65rem;
-    color: var(--grey-500);
+    color: var(--text-dim);
   }
   .menu-btn {
     display: none;
     background: none;
-    border: 1px solid var(--grey-700);
+    border: 1px solid var(--line);
     color: var(--white);
     padding: 0.5rem 0.9rem;
     cursor: pointer;
@@ -118,7 +126,7 @@ const current = Astro.url.pathname;
     .nav {
       position: fixed;
       inset: 0;
-      background: var(--black);
+      background: var(--bg);
       display: flex;
       align-items: center;
       padding: var(--gutter);

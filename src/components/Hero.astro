@@ -25,7 +25,7 @@ const { loopVideo, poster, fullReel } = site.hero;
   <div class="hero__content wrap">
     <h1 id="hero-title" class="hero__title">
       <span class="hero__line">Stunts y diseño de acción.</span>
-      <span class="hero__choice">Tú eliges: rodaje clásico o híbrido con IA.</span>
+      <span class="hero__choice">Rodaje clásico o híbrido con IA.</span>
     </h1>
     <!-- BORRADOR: subtítulo pendiente de pulir con Jose. -->
     <p class="hero__sub">
@@ -107,7 +107,7 @@ const { loopVideo, poster, fullReel } = site.hero;
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: var(--ink) url('/media/portada-provisional.jpg') center / cover no-repeat;
+    background: var(--bg-alt) url('/media/portada-provisional.jpg') center / cover no-repeat;
   }
   .hero__video {
     width: 100%;
@@ -118,7 +118,7 @@ const { loopVideo, poster, fullReel } = site.hero;
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to top, rgb(10 10 10 / 0.92) 0%, rgb(10 10 10 / 0.35) 55%, rgb(10 10 10 / 0.55) 100%);
+      linear-gradient(to top, rgb(59 59 59 / 1) 0%, rgb(59 59 59 / 0.4) 55%, rgb(59 59 59 / 0.6) 100%);
   }
 
   .viewfinder {
@@ -171,13 +171,13 @@ const { loopVideo, poster, fullReel } = site.hero;
     font-weight: 500;
     font-size: clamp(1.4rem, 3vw, 2.4rem);
     letter-spacing: 0.02em;
-    color: var(--grey-300);
-    max-width: 26ch;
+    color: var(--text-muted);
+    text-wrap: balance;
   }
   .hero__sub {
     margin-top: 1.5rem;
     max-width: 46ch;
-    color: var(--grey-300);
+    color: var(--text-muted);
     font-size: clamp(1rem, 1.4vw, 1.15rem);
   }
   .hero__actions {
@@ -191,7 +191,7 @@ const { loopVideo, poster, fullReel } = site.hero;
     width: min(92vw, 1280px);
     padding: 0;
     border: 0;
-    background: var(--black);
+    background: var(--bg);
     color: var(--white);
   }
   .reel::backdrop {

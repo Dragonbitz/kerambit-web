@@ -28,6 +28,7 @@ Cada `push` a `main` publica una versión nueva en la URL de pruebas.
 | Tres beneficios | `src/components/Benefits.astro` |
 | Colores y tipografías | `src/styles/global.css` |
 | Vídeos e imágenes | `public/media/` |
+| Logo (SVG) | `src/assets/` |
 
 ## Idiomas
 

@@ -8,12 +8,12 @@
 @import '@fontsource/ibm-plex-mono/400.css';
 
 :root {
-  --black: #0a0a0a;
-  --ink: #111111;
-  --grey-900: #1a1a1a;
-  --grey-700: #3a3a3a;
-  --grey-500: #7a7a7a;
-  --grey-300: #b8b8b8;
+  --bg: #3b3b3b; /* fondo general */
+  --bg-alt: #333333; /* secciones alternas */
+  --line-soft: #4a4a4a;
+  --line: #5e5e5e;
+  --text-dim: #a8a8a8;
+  --text-muted: #cacaca;
   --white: #f2f2f0;
   /* PENDIENTE: color de acento. De momento, blanco. */
   --accent: var(--white);
@@ -41,7 +41,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--black);
+  background: var(--bg);
   color: var(--white);
   font-family: var(--font-body);
   font-size: 1.0625rem;
@@ -82,7 +82,7 @@ p {
 
 ::selection {
   background: var(--white);
-  color: var(--black);
+  color: var(--bg);
 }
 
 /* Etiquetas tipo pizarra / código de tiempo */
@@ -91,7 +91,7 @@ p {
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--grey-300);
+  color: var(--text-muted);
 }
 
 .wrap {
@@ -117,7 +117,7 @@ p {
   z-index: 100;
   padding: 0.5rem 1rem;
   background: var(--white);
-  color: var(--black);
+  color: var(--bg);
 }
 .skip:focus {
   top: 1rem;
@@ -145,11 +145,11 @@ p {
 }
 .btn:hover {
   background: var(--white);
-  color: var(--black);
+  color: var(--bg);
 }
 .btn--solid {
   background: var(--white);
-  color: var(--black);
+  color: var(--bg);
 }
 .btn--solid:hover {
   background: transparent;
@@ -186,7 +186,7 @@ p {
   display: block;
   width: 100%;
   height: clamp(40px, 6vw, 90px);
-  color: var(--ink);
+  color: var(--bg-alt);
 }
 
 @media (prefers-reduced-motion: reduce) {

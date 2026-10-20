@@ -1,6 +1,7 @@
 ---
 import { nav, ui } from '../i18n/ui';
 import { site } from '../config/site';
+import wordmark from '../assets/kerambit-wordmark.svg?raw';
 
 const t = ui.es;
 const year = new Date().getFullYear();
@@ -9,14 +10,14 @@ const year = new Date().getFullYear();
 <footer class="footer">
   <div class="wrap footer__inner">
     <div>
-      <p class="footer__brand">{site.name}</p>
+      <p class="footer__brand" aria-label={`${site.name} Action Design`} set:html={wordmark} />
       <p class="footer__tag">{t.footerTagline}</p>
     </div>
     <ul class="footer__nav">
       {nav.es.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
     </ul>
     <p class="mono footer__meta">
-      © {year} {site.name} · {t.answerLangs}
+      © {year} {site.name}
       <!-- PENDIENTE: enlaces a aviso legal y política de privacidad/cookies. -->
     </p>
   </div>
@@ -24,9 +25,9 @@ const year = new Date().getFullYear();
 
 <style>
   .footer {
-    border-top: 1px solid var(--grey-900);
+    border-top: 1px solid var(--line-soft);
     padding-block: 3rem;
-    background: var(--black);
+    background: var(--bg);
   }
   .footer__inner {
     display: grid;
@@ -35,13 +36,15 @@ const year = new Date().getFullYear();
     align-items: start;
   }
   .footer__brand {
-    font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: 0.32em;
-    font-size: 1.25rem;
+    width: 11rem;
+    margin-bottom: 0.75rem;
+  }
+  .footer__brand :global(svg) {
+    width: 100%;
+    height: auto;
   }
   .footer__tag {
-    color: var(--grey-500);
+    color: var(--text-dim);
     font-size: 0.95rem;
   }
   .footer__nav {
@@ -54,7 +57,7 @@ const year = new Date().getFullYear();
   }
   .footer__nav a {
     text-decoration: none;
-    color: var(--grey-300);
+    color: var(--text-muted);
     font-size: 0.95rem;
   }
   .footer__nav a:hover {
@@ -62,7 +65,7 @@ const year = new Date().getFullYear();
   }
   .footer__meta {
     grid-column: 1 / -1;
-    color: var(--grey-500);
+    color: var(--text-dim);
   }
   @media (max-width: 700px) {
     .footer__inner {
