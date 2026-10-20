@@ -1,25 +1,34 @@
 /**
  * Equipo de KERAMBIT.
- * PENDIENTE: fotos, nombres y bios. Para añadir la foto de alguien, guarda la imagen en
- * public/equipo/ (por ejemplo genaro.jpg, formato vertical 4:5) y pon la ruta en `foto`.
+ * Para añadir la foto de alguien, guarda la imagen en public/equipo/
+ * (formato vertical 4:5, por ejemplo jose.jpg) y pon la ruta en `foto`.
  */
 export interface Miembro {
   nombre: string;
-  rol: string;
+  roles: string[];
   bio?: string;
   foto?: string;
-  contacto?: boolean;
 }
 
 export const equipo: Miembro[] = [
   {
     nombre: 'Genaro Rodríguez',
-    rol: 'Contacto',
-    bio: 'Responde en español, inglés y catalán.',
-    contacto: true,
+    roles: ['Diseño de acción', 'Action supervisor'],
+    foto: '/equipo/genaro.jpg',
   },
-  // PENDIENTE: resto del equipo. Las fichas sin nombre se muestran como "por confirmar".
-  { nombre: '', rol: 'Stunts' },
-  { nombre: '', rol: 'Stunts' },
-  { nombre: '', rol: 'Diseño de acción' },
+  {
+    nombre: 'Jose Álvarez',
+    roles: ['IA assistant', 'Stunt performer'],
+    // PENDIENTE: foto.
+  },
+  {
+    nombre: 'Iván Millán',
+    roles: ['Stunt coordinator', 'Stunt performer'],
+    foto: '/equipo/ivan.jpg',
+  },
+  {
+    nombre: 'Víctor Cerezuela',
+    roles: ['IA assistant', 'Stunt performer'],
+    // PENDIENTE: foto.
+  },
 ];

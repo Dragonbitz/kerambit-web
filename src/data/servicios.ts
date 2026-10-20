@@ -97,11 +97,6 @@ export const servicios: Servicio[] = [
         texto:
           'Mantiene ese rodaje y usa la IA solo donde reduce riesgo o tiempo. Por ejemplo, un atropello más o menos violento sin que el stunt tenga que darlo todo, o un tiroteo en un espacio cerrado sin fogueo real.',
       },
-      {
-        titulo: 'El artista, primero',
-        texto:
-          'La IA refuerza al artista, no lo sustituye. El artista cobra igual y el servicio va dentro de la tarifa de stunts.',
-      },
     ],
     ia: 'Cuál conviene lo decide la escena. El coste lo vemos juntos en una llamada.',
     borrador: true,

@@ -2,16 +2,16 @@
 import Base from '../layouts/Base.astro';
 import PageIntro from '../components/PageIntro.astro';
 import Closing from '../components/Closing.astro';
-import Draft from '../components/Draft.astro';
 import { equipo } from '../data/equipo';
-import { site, whatsappUrl } from '../config/site';
 
 const initials = (n: string) =>
   n
     .split(' ')
     .map((p) => p[0])
     .slice(0, 2)
-    .join('');
+    .join('')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
 ---
 
 <Base title="Equipo" description="El equipo de stunts y diseño de acción de KERAMBIT: más de 20 años en activo, del guion a la sala de montaje.">
@@ -21,29 +21,22 @@ const initials = (n: string) =>
 
   <section class="team">
     <div class="wrap">
-      <Draft />
       <ul class="team__grid">
         {equipo.map((m, i) => (
-          <li class:list={['member', { 'member--pending': !m.nombre }]}>
+          <li class="member">
             <div class="member__photo">
               {m.foto ? (
-                <img src={m.foto} alt={m.nombre} width="800" height="1000" loading="lazy" />
+                <img src={m.foto} alt={`${m.nombre}, ${m.roles.join(' y ')} de KERAMBIT`} width="800" height="1000" loading="lazy" />
               ) : (
-                <span class="member__initials" aria-hidden="true">{m.nombre ? initials(m.nombre) : '—'}</span>
+                <span class="member__initials" aria-hidden="true">{initials(m.nombre)}</span>
               )}
               <span class="vf vf--tl" aria-hidden="true"></span>
               <span class="vf vf--br" aria-hidden="true"></span>
               <span class="mono member__take" aria-hidden="true">Toma {String(i + 1).padStart(2, '0')}</span>
             </div>
-            <p class="mono member__role">{m.rol}</p>
-            <h2 class="member__name">{m.nombre || 'Por confirmar'}</h2>
+            <h2 class="member__name">{m.nombre}</h2>
+            <p class="mono member__role">{m.roles.join(' · ')}</p>
             {m.bio && <p class="member__bio">{m.bio}</p>}
-            {m.contacto && (
-              <p class="member__contact">
-                <a href={whatsappUrl()} target="_blank" rel="noopener">{site.contact.phoneDisplay}</a>
-                <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
-              </p>
-            )}
           </li>
         ))}
       </ul>
@@ -59,7 +52,7 @@ const initials = (n: string) =>
   }
   .team__grid {
     list-style: none;
-    margin: 1.5rem 0 0;
+    margin: 0;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
@@ -111,26 +104,7 @@ const initials = (n: string) =>
   .member__name {
     font-size: clamp(1.5rem, 2.2vw, 1.9rem);
   }
-  .member--pending .member__name {
-    color: var(--text-dim);
-  }
   .member__bio {
     color: var(--text-muted);
-  }
-  .member__contact {
-    display: grid;
-    gap: 0.2rem;
-    margin-top: 0.4rem;
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-  }
-  .member__contact a {
-    color: var(--text-muted);
-    text-decoration: none;
-    border-bottom: 1px solid var(--line);
-    justify-self: start;
-  }
-  .member__contact a:hover {
-    color: var(--white);
   }
 </style>

@@ -10,7 +10,6 @@ export const site = {
   preview: true,
 
   contact: {
-    person: 'Genaro Rodríguez',
     email: 'kerambit.action@gmail.com',
     // Teléfono y WhatsApp: mismo número, con prefijo internacional.
     phoneDisplay: '+34 655 519 325',
