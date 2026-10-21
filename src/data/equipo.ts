@@ -17,14 +17,14 @@ export const equipo: Miembro[] = [
     foto: '/equipo/genaro.jpg',
   },
   {
-    nombre: 'Jose Álvarez',
-    roles: ['IA assistant', 'Stunt performer'],
-    // PENDIENTE: foto.
-  },
-  {
     nombre: 'Iván Millán',
     roles: ['Stunt coordinator', 'Stunt performer'],
     foto: '/equipo/ivan.jpg',
+  },
+  {
+    nombre: 'Jose Álvarez',
+    roles: ['IA assistant', 'Stunt performer'],
+    // PENDIENTE: foto.
   },
   {
     nombre: 'Víctor Cerezuela',
