@@ -29,6 +29,7 @@ Cada `push` a `main` publica una versión nueva en la URL de pruebas.
 | Titular y subtítulo de portada | `src/components/Hero.astro` |
 | Tres beneficios | `src/components/Benefits.astro` |
 | Textos de los servicios | `src/data/servicios.ts` |
+| Preguntas frecuentes | `src/data/faq.ts` |
 | Equipo (nombres, bios, fotos) | `src/data/equipo.ts` y fotos en `public/equipo/` |
 | Colores y tipografías | `src/styles/global.css` |
 | Vídeos e imágenes | `public/media/` |
@@ -55,7 +56,7 @@ Decidido (oct. 2026):
 ## Fases
 
 1. Estructura y portada
-2. Servicios y equipo ← **actual** (textos en borrador)
-3. Trabajos y preguntas frecuentes
+2. Servicios y equipo (textos de servicios en borrador)
+3. Trabajos y preguntas frecuentes ← **actual** (preguntas hechas; trabajos pendientes de material)
 4. Contacto, SEO/GEO y datos estructurados
 5. Dominio y publicación (quitar el modo pruebas)

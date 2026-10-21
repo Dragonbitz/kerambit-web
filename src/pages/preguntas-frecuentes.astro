@@ -1,12 +1,87 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageIntro from '../components/PageIntro.astro';
-import Wip from '../components/Wip.astro';
+import Closing from '../components/Closing.astro';
+import { faq } from '../data/faq';
+
+// Datos estructurados para buscadores e IAs (FAQPage).
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  inLanguage: 'es',
+  mainEntity: faq.map((q) => ({
+    '@type': 'Question',
+    name: q.pregunta,
+    acceptedAnswer: { '@type': 'Answer', text: q.respuesta.join(' ') },
+  })),
+};
 ---
 
-<Base title="Preguntas frecuentes" description="Respuestas directas para productoras: material, montaje, derechos de imagen, previsualización y rodaje híbrido con IA.">
+<Base title="Preguntas frecuentes" description="Respuestas directas para productoras: material para empezar, montaje, derechos de imagen, previsualización y rodaje híbrido con IA.">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
   <PageIntro scene="05" title="Preguntas frecuentes">
     <p>Respuestas cortas a lo que suele preguntar una productora.</p>
   </PageIntro>
-  <Wip items={['Las seis preguntas con su texto final (fase 3).']} />
+
+  <section class="faq">
+    <div class="wrap">
+      <ol class="faq__list">
+        {faq.map((q, i) => (
+          <li class="q" id={`p${i + 1}`}>
+            <p class="mono q__n">Toma {String(i + 1).padStart(2, '0')}</p>
+            <h2 class="q__title">{q.pregunta}</h2>
+            <div class="q__answer">
+              {q.respuesta.map((p) => <p>{p}</p>)}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <Closing />
 </Base>
+
+<style>
+  .faq {
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+  }
+  .faq__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .q {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr) minmax(0, 1.25fr);
+    gap: 1rem clamp(1.5rem, 4vw, 3.5rem);
+    padding-block: clamp(1.75rem, 3.5vw, 2.75rem);
+    border-bottom: 1px solid var(--line-soft);
+    scroll-margin-top: calc(var(--header-h) + 1rem);
+  }
+  .q__n {
+    padding-top: 0.45rem;
+  }
+  .q__title {
+    font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+    text-transform: none;
+    line-height: 1.1;
+  }
+  .q__answer {
+    display: grid;
+    gap: 0.9rem;
+    color: var(--text-muted);
+    max-width: 60ch;
+  }
+  @media (max-width: 900px) {
+    .q {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+    .q__n {
+      padding-top: 0;
+    }
+  }
+</style>
