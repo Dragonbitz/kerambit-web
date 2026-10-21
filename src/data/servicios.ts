@@ -89,7 +89,7 @@ export const servicios: Servicio[] = [
     corto: 'Entrenamiento',
     resumen: 'Preparamos a los actores para que rueden su acción con seguridad y verdad en cámara.',
     intro:
-      'Antes del rodaje entrenamos con los actores la acción que ya está diseñada y previsualizada. Llegan al set sabiendo qué tienen que hacer y cómo hacerlo con seguridad.',
+      'Antes del rodaje entrenamos con los actores la acción diseñada y la ajustamos a cada uno. Llegan al set sabiendo qué tienen que hacer y cómo hacerlo con seguridad.',
     secciones: [
       {
         titulo: 'Qué trabajamos',
@@ -102,7 +102,7 @@ export const servicios: Servicio[] = [
       {
         titulo: 'Por qué importa',
         texto:
-          'Un actor que conoce la escena rueda más rápido y con menos riesgo. Y cuanta más acción hace él mismo, más libertad tiene la cámara.',
+          'Una coreografía también cuenta una historia. Igual que el actor estudia y entiende el texto, tiene que estudiar el movimiento. Por eso buscamos el que mejor se adapta a sus aptitudes. Un actor que conoce la escena rueda más rápido y con menos riesgo. Y cuanta más acción hace él mismo, más libertad tiene la cámara.',
       },
     ],
     ia: 'Si hay planos que el actor no debe hacer por seguridad, valoramos contigo si se resuelven con su doble o en híbrido con IA.',
