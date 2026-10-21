@@ -26,7 +26,7 @@ const { current } = Astro.props;
                 <>
                   {i > 0 && <span class="leg__amp"> y </span>}
                   <a href={`/servicios/${slug}/`} aria-current={current === slug ? 'page' : undefined}>
-                    {getServicio(slug)?.titulo}
+                    {getServicio(slug)?.corto ?? getServicio(slug)?.titulo}
                   </a>
                 </>
               ))}

@@ -12,6 +12,8 @@ export interface Servicio {
   slug: string;
   tramo: string;
   titulo: string;
+  /** Nombre corto para el relevo, si el título es largo. */
+  corto?: string;
   /** Frase corta para listados y meta description. */
   resumen: string;
   intro: string;
@@ -23,7 +25,7 @@ export interface Servicio {
 
 export const tramos = [
   { n: '01', titulo: 'Diseño de acción desde guion', slugs: ['diseno-de-accion'] },
-  { n: '02', titulo: 'Previsualización', slugs: ['previsualizacion'] },
+  { n: '02', titulo: 'Previsualización y entrenamiento', slugs: ['previsualizacion', 'entrenamiento'] },
   { n: '03', titulo: 'Rodaje', slugs: ['rodaje'] },
   { n: '04', titulo: 'Montaje y reshoots', slugs: ['montaje', 'reshoots'] },
 ];
@@ -78,6 +80,32 @@ export const servicios: Servicio[] = [
       },
     ],
     ia: 'La previsualización puede incluir planos híbridos para que veas cómo quedarían antes de decidir cómo rodarlos.',
+    borrador: true,
+  },
+  {
+    slug: 'entrenamiento',
+    tramo: '02',
+    titulo: 'Entrenamiento con actores',
+    corto: 'Entrenamiento',
+    resumen: 'Preparamos a los actores para que rueden su acción con seguridad y verdad en cámara.',
+    intro:
+      'Antes del rodaje entrenamos con los actores la acción que ya está diseñada y previsualizada. Llegan al set sabiendo qué tienen que hacer y cómo hacerlo con seguridad.',
+    secciones: [
+      {
+        titulo: 'Qué trabajamos',
+        puntos: [
+          'La coreografía de cada escena, paso a paso.',
+          'Cómo vender cada golpe y cada caída en cámara.',
+          'Qué hace el actor y qué hace su doble.',
+        ],
+      },
+      {
+        titulo: 'Por qué importa',
+        texto:
+          'Un actor que conoce la escena rueda más rápido y con menos riesgo. Y cuanta más acción hace él mismo, más libertad tiene la cámara.',
+      },
+    ],
+    ia: 'Si hay planos que el actor no debe hacer por seguridad, valoramos contigo si se resuelven con su doble o en híbrido con IA.',
     borrador: true,
   },
   {
