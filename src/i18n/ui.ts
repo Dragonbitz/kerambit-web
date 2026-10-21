@@ -27,7 +27,6 @@ export const ui = {
     whatsapp: 'WhatsApp',
     email: 'Email',
     contactCta: 'Pide presupuesto',
-    answerLangs: 'Respondemos en español, catalán e inglés.',
     wip: 'En preparación',
     footerTagline: 'Stunts y diseño de acción para cine.',
     previewNotice: 'Versión de pruebas',

@@ -14,7 +14,6 @@ export const site = {
     // Teléfono y WhatsApp: mismo número, con prefijo internacional.
     phoneDisplay: '+34 655 519 325',
     phoneE164: '34655519325',
-    languages: 'español, catalán e inglés',
   },
 
   hero: {

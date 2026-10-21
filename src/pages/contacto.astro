@@ -4,10 +4,9 @@ import PageIntro from '../components/PageIntro.astro';
 import ContactButtons from '../components/ContactButtons.astro';
 import Wip from '../components/Wip.astro';
 import { site } from '../config/site';
-import { ui } from '../i18n/ui';
 ---
 
-<Base title="Contacto" description="Pide presupuesto o agenda una llamada con KERAMBIT. Respondemos en español, catalán e inglés.">
+<Base title="Contacto" description="Pide presupuesto o agenda una llamada con KERAMBIT, equipo de stunts y diseño de acción para cine.">
   <PageIntro scene="06" title="Contacto">
     <p>Cuéntanos en qué fase está tu proyecto. Concretamos una llamada o videollamada.</p>
   </PageIntro>
@@ -16,7 +15,6 @@ import { ui } from '../i18n/ui';
       <div class="contact__person">
         <p class="mono">Teléfono y WhatsApp</p>
         <p class="contact__phone">{site.contact.phoneDisplay}</p>
-        <p class="contact__langs">{ui.es.answerLangs}</p>
       </div>
       <ContactButtons />
     </div>
@@ -44,9 +42,5 @@ import { ui } from '../i18n/ui';
     font-family: var(--font-mono);
     letter-spacing: 0.05em;
     margin-top: 0.25rem;
-  }
-  .contact__langs {
-    color: var(--text-dim);
-    margin-top: 0.75rem;
   }
 </style>
