@@ -18,9 +18,10 @@ export const site = {
   },
 
   hero: {
-    // PENDIENTE: sustituir por el corte de portada del reel (10-15 s, mudo, ligero) y su imagen fija.
-    loopVideo: '/media/portada-provisional.mp4',
-    poster: '/media/portada-provisional.jpg',
+    // Vídeo de portada en dos versiones: la web elige la vertical en pantallas en vertical (móvil).
+    // Formato: MP4 H.264, mudo. Imagen fija (poster) para cuando no carga o mientras carga.
+    horizontal: { video: '/media/portada-16x9.mp4', poster: '/media/portada-16x9.jpg' },
+    vertical: { video: '/media/portada-9x16.mp4', poster: '/media/portada-9x16.jpg' },
     // PENDIENTE: reel completo (se abre al hacer clic). Vacío = el botón no se muestra.
     fullReel: '',
   },

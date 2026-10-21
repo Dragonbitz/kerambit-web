@@ -3,13 +3,22 @@ import ContactButtons from './ContactButtons.astro';
 import Icon from './Icon.astro';
 import { site } from '../config/site';
 
-const { loopVideo, poster, fullReel } = site.hero;
+const { horizontal, vertical, fullReel } = site.hero;
 ---
 
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero__media" aria-hidden="true">
     <!-- El vídeo solo se carga si el navegador no pide ahorrar datos ni reducir movimiento. -->
-    <video class="hero__video" data-src={loopVideo} poster={poster} muted loop playsinline preload="none"></video>
+    <video
+      class="hero__video"
+      data-h={horizontal.video}
+      data-h-poster={horizontal.poster}
+      data-v={vertical.video}
+      data-v-poster={vertical.poster}
+      muted
+      loop
+      playsinline
+      preload="none"></video>
     <div class="hero__shade"></div>
   </div>
 
@@ -19,7 +28,7 @@ const { loopVideo, poster, fullReel } = site.hero;
     <span class="vf vf--bl"></span><span class="vf vf--br"></span>
     <span class="mono vf__label vf__label--tl">Toma 01</span>
     <span class="mono vf__label vf__label--tr"><i class="rec"></i><span data-timecode>00:00:00:00</span></span>
-    <span class="mono vf__label vf__label--br">2.39 : 1</span>
+    <span class="mono vf__label vf__label--br"><span class="ar-h">16 : 9</span><span class="ar-v">9 : 16</span></span>
   </div>
 
   <div class="hero__content wrap">
@@ -51,14 +60,22 @@ const { loopVideo, poster, fullReel } = site.hero;
 </section>
 
 <script>
-  // Vídeo de portada: carga controlada.
+  // Vídeo de portada: versión vertical u horizontal según la pantalla, con carga controlada.
   const video = document.querySelector<HTMLVideoElement>('.hero__video');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
-  if (video && !reduce && !saveData && video.dataset.src) {
-    video.src = video.dataset.src;
+  const portrait = window.matchMedia('(orientation: portrait)');
+  const pickVideo = () => {
+    if (!video) return;
+    const d = video.dataset;
+    const [src, poster] = portrait.matches ? [d.v, d.vPoster] : [d.h, d.hPoster];
+    if (poster) video.poster = poster;
+    if (reduce || saveData || !src || video.getAttribute('src') === src) return;
+    video.src = src;
     video.play().catch(() => {});
-  }
+  };
+  pickVideo();
+  portrait.addEventListener('change', pickVideo);
 
   // Código de tiempo a 24 fps.
   const tc = document.querySelector<HTMLElement>('[data-timecode]');
@@ -107,7 +124,12 @@ const { loopVideo, poster, fullReel } = site.hero;
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: var(--bg-alt) url('/media/portada-provisional.jpg') center / cover no-repeat;
+    background: var(--bg-alt) url('/media/portada-16x9.jpg') center / cover no-repeat;
+  }
+  @media (orientation: portrait) {
+    .hero__media {
+      background-image: url('/media/portada-9x16.jpg');
+    }
   }
   .hero__video {
     width: 100%;
@@ -212,6 +234,17 @@ const { loopVideo, poster, fullReel } = site.hero;
     cursor: pointer;
   }
 
+  .ar-v {
+    display: none;
+  }
+  @media (orientation: portrait) {
+    .ar-h {
+      display: none;
+    }
+    .ar-v {
+      display: inline;
+    }
+  }
   @media (max-width: 600px) {
     .vf__label--br {
       display: none;
