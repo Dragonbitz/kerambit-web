@@ -36,6 +36,11 @@ const initials = (n: string) =>
             </div>
             <h2 class="member__name">{m.nombre}</h2>
             <p class="mono member__role">{m.roles.join(' · ')}</p>
+            {m.imdb && (
+              <a class="mono member__imdb" href={m.imdb} target="_blank" rel="noopener">
+                IMDb ↗
+              </a>
+            )}
             {m.bio && <p class="member__bio">{m.bio}</p>}
           </li>
         ))}
@@ -103,6 +108,16 @@ const initials = (n: string) =>
   }
   .member__name {
     font-size: clamp(1.5rem, 2.2vw, 1.9rem);
+  }
+  .member__imdb {
+    justify-self: start;
+    margin-top: 0.25rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .member__imdb:hover {
+    color: var(--white);
   }
   .member__bio {
     color: var(--text-muted);

@@ -48,6 +48,13 @@ Decidido (oct. 2026):
   - Nunca se redirige a buscadores; cada versión lleva sus etiquetas hreflang.
 - Selector de idioma siempre visible cuando existan las versiones.
 
+## Pendientes apuntados
+
+- Equipo: enlace al perfil de IMDb de cada miembro (campo `imdb` en `src/data/equipo.ts`; el enlace aparece solo cuando se rellena).
+- Equipo: fotos de Jose Álvarez y Víctor Cerezuela.
+- Reel completo para el botón "Ver reel" (lo prepara el equipo).
+- Trabajos: material de cada proyecto.
+
 ## Decisiones de contenido
 
 - No mencionar en la web: el número de escenas de acción (no siempre lo saben antes de enviar el guion), los idiomas en que se responde, tarifas ni condiciones económicas (se hablan en la llamada).
