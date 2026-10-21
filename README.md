@@ -38,6 +38,20 @@ Cada `push` a `main` publica una versión nueva en la URL de pruebas.
 
 Español en la raíz (`/`). Catalán (`/ca/`) e inglés (`/en/`) están preparados en la configuración, pero ocultos hasta tener textos validados.
 
+Decidido (oct. 2026):
+
+- Orden: primero toda la web en español; después inglés (prioritario, por clientes de EE. UU.) y catalán.
+- Idioma automático según el **idioma del navegador**, no según el país de conexión:
+  - Navegador en español → español. En catalán → catalán. Cualquier otro → inglés.
+  - Solo en la primera visita a la portada. Si la persona elige idioma en el selector, se recuerda y no se vuelve a cambiar.
+  - Nunca se redirige a buscadores; cada versión lleva sus etiquetas hreflang.
+- Selector de idioma siempre visible cuando existan las versiones.
+
+## Decisiones de contenido
+
+- No mencionar en la web: el número de escenas de acción (no siempre lo saben antes de enviar el guion), los idiomas en que se responde, tarifas ni condiciones económicas (se hablan en la llamada).
+- Genaro aparece en Equipo, pero no como persona de contacto.
+
 ## Fases
 
 1. Estructura y portada
