@@ -63,7 +63,7 @@ export const servicios: Servicio[] = [
     titulo: 'Previsualización',
     resumen: 'Grabamos y montamos la escena antes del rodaje para que todo el equipo sepa qué va a pasar.',
     intro:
-      'Grabamos la escena con nuestro equipo y la montamos. Dirección, departamentos y stunts la ven antes de llegar al set.',
+      'Grabamos la escena con nuestro equipo de stunts y la montamos. Con fotos de las localizaciones, o de un espacio parecido, la IA la sitúa en ese entorno para que se parezca más al rodaje real. Dirección, departamentos y stunts la ven antes de llegar al set.',
     secciones: [
       {
         titulo: 'Qué recibes',
