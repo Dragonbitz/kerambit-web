@@ -1,6 +1,7 @@
 ---
 // Carrusel de carteles como una tira de película que avanza sola.
-// Se pausa al pasar el ratón o al enfocar con teclado; sin animación si el usuario pide reducir movimiento.
+// Se puede deslizar con el dedo (o con el trackpad); al soltar, vuelve a avanzar al poco.
+// Se pausa al pasar el ratón o al enfocar con teclado; no avanza solo si el usuario pide reducir movimiento.
 import { peliculas } from '../data/peliculas';
 
 // Copias de la lista para que la tira no deje huecos en pantallas anchas.
@@ -10,8 +11,8 @@ const copies = Array.from({ length: COPIES }, (_, i) => i);
 
 <section class="strip" aria-label="Películas en las que hemos trabajado">
   <div class="strip__band" aria-hidden="true"></div>
-  <div class="strip__viewport">
-    <ul class="strip__track" style={`--copies:${COPIES}; --items:${peliculas.length}`}>
+  <div class="strip__viewport" data-copies={COPIES}>
+    <ul class="strip__track">
       {copies.map((c) =>
         peliculas.map((p) => (
           <li class="film" aria-hidden={c > 0 ? 'true' : undefined}>
@@ -28,8 +29,9 @@ const copies = Array.from({ length: COPIES }, (_, i) => i);
               </div>
               <div class="film__meta">
                 <span class="film__title">{p.titulo}</span>
-                <span class="mono film__year">{p.anio ?? p.estado}</span>
+                {p.anio && <span class="mono film__year">{p.anio}</span>}
               </div>
+              {p.estado && <span class="mono film__state">{p.estado}</span>}
               <p class="film__work">{p.trabajo}</p>
             </a>
           </li>
@@ -39,6 +41,74 @@ const copies = Array.from({ length: COPIES }, (_, i) => i);
   </div>
   <div class="strip__band" aria-hidden="true"></div>
 </section>
+
+<script>
+  const SPEED = 35; // píxeles por segundo
+  const RESUME_AFTER = 2500; // ms tras soltar el dedo
+
+  document.querySelectorAll<HTMLElement>('.strip__viewport').forEach((vp) => {
+    const track = vp.querySelector<HTMLElement>('.strip__track');
+    if (!track) return;
+    const copies = Number(vp.dataset.copies) || 1;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return; // sin avance automático; se puede deslizar a mano
+
+    let copyWidth = track.scrollWidth / copies;
+    let pos = copyWidth; // empezamos en la segunda copia para poder deslizar hacia los dos lados
+    vp.scrollLeft = pos;
+
+    let hovering = false;
+    let touching = false;
+    let focused = false;
+    let visible = true;
+    let resumeAt = 0;
+    let last = performance.now();
+
+    // Bucle sin costuras: si pasamos de una copia, saltamos una copia atrás (o adelante).
+    const wrap = () => {
+      if (vp.scrollLeft >= copyWidth * 2) vp.scrollLeft -= copyWidth;
+      else if (vp.scrollLeft < copyWidth * 0.5) vp.scrollLeft += copyWidth;
+    };
+
+    const tick = (now: number) => {
+      const dt = Math.min(now - last, 100) / 1000;
+      last = now;
+      const paused = hovering || touching || focused || !visible || now < resumeAt;
+      if (!paused) {
+        // `pos` guarda los decimales; el navegador redondea scrollLeft a píxeles.
+        pos += SPEED * dt;
+        if (pos >= copyWidth * 2) pos -= copyWidth;
+        vp.scrollLeft = pos;
+      } else {
+        pos = vp.scrollLeft;
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+
+    // El usuario mueve la tira (dedo, trackpad o rueda): mantenemos el bucle y esperamos antes de seguir.
+    vp.addEventListener('scroll', () => {
+      if (touching || hovering) {
+        wrap();
+        resumeAt = performance.now() + RESUME_AFTER;
+      }
+    }, { passive: true });
+    vp.addEventListener('touchstart', () => (touching = true), { passive: true });
+    vp.addEventListener('touchend', () => {
+      touching = false;
+      resumeAt = performance.now() + RESUME_AFTER;
+    }, { passive: true });
+    vp.addEventListener('pointerenter', (e) => e.pointerType === 'mouse' && (hovering = true));
+    vp.addEventListener('pointerleave', (e) => e.pointerType === 'mouse' && (hovering = false));
+    vp.addEventListener('focusin', () => (focused = true));
+    vp.addEventListener('focusout', () => (focused = false));
+    new IntersectionObserver(([entry]) => (visible = entry.isIntersecting)).observe(vp);
+    window.addEventListener('resize', () => {
+      copyWidth = track.scrollWidth / copies;
+      wrap();
+    });
+  });
+</script>
 
 <style>
   .strip {
@@ -55,7 +125,14 @@ const copies = Array.from({ length: COPIES }, (_, i) => i);
   }
   .strip__viewport {
     padding-block: 1.75rem;
-    overflow: hidden;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y;
+  }
+  .strip__viewport::-webkit-scrollbar {
+    display: none;
   }
   .strip__track {
     list-style: none;
@@ -63,16 +140,6 @@ const copies = Array.from({ length: COPIES }, (_, i) => i);
     padding: 0;
     display: flex;
     width: max-content;
-    animation: strip-run calc(var(--items) * 9s) linear infinite;
-  }
-  .strip:hover .strip__track,
-  .strip:focus-within .strip__track {
-    animation-play-state: paused;
-  }
-  @keyframes strip-run {
-    to {
-      transform: translateX(calc(-100% / var(--copies)));
-    }
   }
   .film {
     width: clamp(180px, 20vw, 250px);
@@ -141,18 +208,17 @@ const copies = Array.from({ length: COPIES }, (_, i) => i);
     font-size: 0.65rem;
     white-space: nowrap;
   }
+  .film__state {
+    color: var(--text-dim);
+    font-size: 0.65rem;
+    margin-top: -0.3rem;
+  }
   .film__work {
     color: var(--text-muted);
     font-size: 0.85rem;
     line-height: 1.45;
   }
   @media (prefers-reduced-motion: reduce) {
-    .strip__track {
-      animation: none;
-    }
-    .strip__viewport {
-      overflow-x: auto;
-    }
     .film[aria-hidden='true'] {
       display: none;
     }

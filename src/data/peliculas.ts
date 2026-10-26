@@ -15,9 +15,10 @@ export const peliculas: Pelicula[] = [
   {
     titulo: 'Xtremo',
     anio: '2021',
-    trabajo: 'Diseño de toda la acción, entrenamiento de actores y dirección de la acción en set.',
+    trabajo:
+      'Idea original de Genaro Rodríguez y Teo García. Diseño de toda la acción, entrenamiento de actores y dirección de la acción en set.',
     imdb: 'https://www.imdb.com/title/tt11658120/',
-    // PENDIENTE: cartel.
+    cartel: '/media/peliculas/xtremo.jpg',
   },
   {
     titulo: 'No matarás',
