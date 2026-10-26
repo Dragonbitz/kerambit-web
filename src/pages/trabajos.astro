@@ -2,25 +2,25 @@
 import Base from '../layouts/Base.astro';
 import PageIntro from '../components/PageIntro.astro';
 import Closing from '../components/Closing.astro';
-import Wip from '../components/Wip.astro';
+import FilmStrip from '../components/FilmStrip.astro';
 import VimeoPlayer from '../components/VimeoPlayer.astro';
 import { getVideo } from '../data/videos';
 
 const showreel = getVideo('showreel');
 ---
 
-<Base title="Trabajos" description="Showreel y películas en las que ha trabajado el equipo de stunts y diseño de acción KERAMBIT.">
+<Base title="Trabajos" description="Películas en las que ha trabajado el equipo de stunts y diseño de acción KERAMBIT: Xtremo, No matarás, Awareness y The Last Resort. Showreel de Genaro Rodríguez.">
   <PageIntro scene="04" title="Trabajos">
     <p>Una selección de nuestro trabajo en cine.</p>
   </PageIntro>
+
+  <FilmStrip />
 
   <section class="works">
     <div class="wrap works__list">
       {showreel && <VimeoPlayer video={showreel} label="Toma 01" />}
     </div>
   </section>
-
-  <Wip items={['Portadas de películas en las que hemos trabajado, u otros vídeos.']} />
 
   <Closing />
 </Base>

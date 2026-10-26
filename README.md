@@ -30,6 +30,8 @@ Cada `push` a `main` publica una versión nueva en la URL de pruebas.
 | Tres beneficios | `src/components/Benefits.astro` |
 | Textos de los servicios | `src/data/servicios.ts` |
 | Preguntas frecuentes | `src/data/faq.ts` |
+| Películas del carrusel | `src/data/peliculas.ts` y carteles en `public/media/peliculas/` |
+| Vídeos de Vimeo | `src/data/videos.ts` |
 | Equipo (nombres, bios, fotos) | `src/data/equipo.ts` y fotos en `public/equipo/` |
 | Colores y tipografías | `src/styles/global.css` |
 | Vídeos e imágenes | `public/media/` |
@@ -51,6 +53,7 @@ Decidido (oct. 2026):
 ## Pendientes apuntados
 
 - Equipo: fotos de Jose Álvarez y Víctor Cerezuela.
+- Trabajos: cartel de Xtremo; carteles de No matarás y Awareness en mejor resolución (ahora ~260 px, de Wikipedia); cartel de The Last Resort cuando exista.
 
 ## Decisiones de contenido
 
