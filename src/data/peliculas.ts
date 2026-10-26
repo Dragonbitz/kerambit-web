@@ -38,7 +38,7 @@ export const peliculas: Pelicula[] = [
   {
     titulo: 'Rosebush Pruning',
     anio: '2026',
-    trabajo: 'Trabajo de stunts en algunas acciones.',
+    trabajo: 'Coordinación de stunts en dos secuencias.',
     imdb: 'https://www.imdb.com/title/tt27844906/',
     cartel: '/media/peliculas/rosebush-pruning.jpg',
   },
