@@ -36,6 +36,13 @@ export const peliculas: Pelicula[] = [
     cartel: '/media/peliculas/awareness.jpg',
   },
   {
+    titulo: 'Rosebush Pruning',
+    anio: '2026',
+    trabajo: 'Trabajo de stunts en algunas acciones.',
+    imdb: 'https://www.imdb.com/title/tt27844906/',
+    cartel: '/media/peliculas/rosebush-pruning.jpg',
+  },
+  {
     titulo: 'The Last Resort',
     estado: 'En postproducción',
     trabajo: 'Diseño de toda la acción, entrenamiento de actores y dirección de la acción en set.',
