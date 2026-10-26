@@ -32,6 +32,7 @@ Cada `push` a `main` publica una versión nueva en la URL de pruebas.
 | Preguntas frecuentes | `src/data/faq.ts` |
 | Películas del carrusel | `src/data/peliculas.ts` y carteles en `public/media/peliculas/` |
 | Vídeos de Vimeo | `src/data/videos.ts` |
+| Citas de crítica | `src/data/criticas.ts` (siempre literales, con fuente y enlace) |
 | Equipo (nombres, bios, fotos) | `src/data/equipo.ts` y fotos en `public/equipo/` |
 | Colores y tipografías | `src/styles/global.css` |
 | Vídeos e imágenes | `public/media/` |

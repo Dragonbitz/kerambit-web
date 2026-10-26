@@ -1,0 +1,99 @@
+---
+// Citas de crítica, como las frases que llevan los carteles de cine.
+import { criticas } from '../data/criticas';
+---
+
+<section class="reviews" aria-labelledby="reviews-title">
+  <div class="wrap">
+    <p class="mono">Prensa</p>
+    <h2 id="reviews-title" class="reviews__title">Lo que dice la crítica</h2>
+    <ul class="reviews__list">
+      {criticas.map((c) => (
+        <li class="review">
+          <blockquote class="review__quote" cite={c.url}>
+            <p lang={c.traduccion ? 'en' : 'es'}>{c.cita}</p>
+          </blockquote>
+          {c.traduccion && <p class="review__translation">{c.traduccion}</p>}
+          <p class="review__source">
+            <span class="review__medium">{c.medio}</span>
+            <span class="mono">{c.autor} · {c.pelicula}</span>
+            <a class="mono review__link" href={c.url} target="_blank" rel="noopener">Leer crítica ↗</a>
+          </p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .reviews {
+    padding-block: clamp(4rem, 9vw, 7rem);
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .reviews__title {
+    margin-top: 1rem;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+  }
+  .reviews__list {
+    list-style: none;
+    margin: clamp(2.5rem, 5vw, 4rem) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: clamp(2rem, 4vw, 3.5rem);
+  }
+  .review {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    position: relative;
+  }
+  .review::before {
+    content: '“';
+    position: absolute;
+    top: 0.6rem;
+    left: -0.1rem;
+    font-family: var(--font-display);
+    font-size: 4.5rem;
+    line-height: 1;
+    color: var(--line);
+  }
+  .review__quote {
+    margin: 0;
+    padding-top: 2.25rem;
+  }
+  .review__quote p {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.4rem, 2.1vw, 1.75rem);
+    line-height: 1.2;
+    color: var(--white);
+  }
+  .review__translation {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+  }
+  .review__source {
+    display: grid;
+    gap: 0.25rem;
+  }
+  .review__medium {
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .review__link {
+    justify-self: start;
+    margin-top: 0.35rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .review__link:hover {
+    color: var(--white);
+  }
+</style>
