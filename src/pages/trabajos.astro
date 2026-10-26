@@ -1,12 +1,34 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageIntro from '../components/PageIntro.astro';
-import Wip from '../components/Wip.astro';
+import Closing from '../components/Closing.astro';
+import VimeoPlayer from '../components/VimeoPlayer.astro';
+import { videos } from '../data/videos';
 ---
 
-<Base title="Trabajos" description="Trabajos anteriores y en proceso del equipo de stunts y diseño de acción KERAMBIT.">
+<Base title="Trabajos" description="Showreel y previsualizaciones de escenas de acción del equipo de stunts y diseño de acción KERAMBIT.">
   <PageIntro scene="04" title="Trabajos">
-    <p>Trabajos anteriores y en proceso.</p>
+    <p>Nuestro showreel y algunas previsualizaciones de escenas de acción, con su resultado en pantalla.</p>
   </PageIntro>
-  <Wip items={['Reel y selección de proyectos, cada uno con una descripción en texto de lo que se ve.']} />
+
+  <section class="works">
+    <div class="wrap works__list">
+      {videos.map((v, i) => (
+        <VimeoPlayer video={v} label={`Toma ${String(i + 1).padStart(2, '0')}`} />
+      ))}
+    </div>
+  </section>
+
+  <Closing />
 </Base>
+
+<style>
+  .works {
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+  }
+  .works__list {
+    display: grid;
+    gap: clamp(3rem, 6vw, 5rem);
+    max-width: 1080px;
+  }
+</style>

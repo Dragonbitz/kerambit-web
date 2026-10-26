@@ -21,8 +21,8 @@ export const site = {
     // Formato: MP4 H.264, mudo. Imagen fija (poster) para cuando no carga o mientras carga.
     horizontal: { video: '/media/portada-16x9.mp4', poster: '/media/portada-16x9.jpg' },
     vertical: { video: '/media/portada-9x16.mp4', poster: '/media/portada-9x16.jpg' },
-    // PENDIENTE: reel completo (se abre al hacer clic). Vacío = el botón no se muestra.
-    fullReel: '',
+    // Reel completo (se abre al hacer clic): slug de src/data/videos.ts. Vacío = el botón no se muestra.
+    reel: 'showreel',
   },
 } as const;
 

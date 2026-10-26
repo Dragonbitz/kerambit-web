@@ -3,6 +3,8 @@ import Base from '../../layouts/Base.astro';
 import Relay from '../../components/Relay.astro';
 import Closing from '../../components/Closing.astro';
 import Draft from '../../components/Draft.astro';
+import VimeoPlayer from '../../components/VimeoPlayer.astro';
+import { getVideo } from '../../data/videos';
 import { servicios, type Servicio } from '../../data/servicios';
 
 export function getStaticPaths() {
@@ -10,6 +12,7 @@ export function getStaticPaths() {
 }
 
 const { s } = Astro.props as { s: Servicio };
+const serviceVideos = (s.videos ?? []).map(getVideo).filter((v) => v !== undefined);
 ---
 
 <Base title={s.titulo} description={s.resumen}>
@@ -44,6 +47,17 @@ const { s } = Astro.props as { s: Servicio };
       </aside>
     </div>
   </section>
+
+  {serviceVideos.length > 0 && (
+    <section class="works">
+      <div class="wrap">
+        <p class="mono works__label">Trabajos</p>
+        <div class="works__grid">
+          {serviceVideos.map((v, i) => <VimeoPlayer video={v} label={`Toma ${String(i + 1).padStart(2, '0')}`} />)}
+        </div>
+      </div>
+    </section>
+  )}
 
   <section class="relay-section">
     <div class="wrap">
@@ -132,6 +146,17 @@ const { s } = Astro.props as { s: Servicio };
   .ai__text {
     font-size: 1.1rem;
     max-width: 60ch;
+  }
+  .works {
+    padding-block: 0 clamp(3rem, 7vw, 5.5rem);
+  }
+  .works__label {
+    margin-bottom: 1.5rem;
+  }
+  .works__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+    gap: clamp(2rem, 4vw, 3rem);
   }
   .relay-section {
     padding-block: clamp(3rem, 7vw, 5rem);

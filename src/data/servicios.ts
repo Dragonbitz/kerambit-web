@@ -20,6 +20,8 @@ export interface Servicio {
   secciones: { titulo: string; texto?: string; puntos?: string[] }[];
   /** Cómo encaja la opción híbrida con IA en este tramo. */
   ia: string;
+  /** Vídeos de trabajos (slugs de src/data/videos.ts). */
+  videos?: string[];
   borrador: boolean;
 }
 
@@ -79,6 +81,7 @@ export const servicios: Servicio[] = [
           'Porque todo el mundo llega al set sabiendo qué va a pasar. Cada departamento ve lo que le toca y el equipo sabe cómo y por dónde rodar cada toma. Menos improvisación, menos tiempo perdido y un presupuesto más ajustado.',
       },
     ],
+    videos: ['awareness-previsualizacion-vs-final', 'previsualizaciones-compilacion'],
     ia: 'La previsualización puede incluir planos híbridos para que veas cómo quedarían antes de decidir cómo rodarlos.',
     borrador: true,
   },

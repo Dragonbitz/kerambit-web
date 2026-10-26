@@ -51,8 +51,8 @@ Decidido (oct. 2026):
 ## Pendientes apuntados
 
 - Equipo: fotos de Jose Álvarez y Víctor Cerezuela.
-- Reel completo para el botón "Ver reel" (lo prepara el equipo).
-- Trabajos: material de cada proyecto.
+- Vimeo: cambiar la privacidad de los vídeos para que se puedan ver insertados en la web (ahora piden iniciar sesión).
+- Trabajos: validar la descripción del showreel.
 
 ## Decisiones de contenido
 

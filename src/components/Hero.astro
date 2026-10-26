@@ -3,7 +3,10 @@ import ContactButtons from './ContactButtons.astro';
 import Icon from './Icon.astro';
 import { site } from '../config/site';
 
-const { horizontal, vertical, fullReel } = site.hero;
+import { getVideo, vimeoEmbedUrl } from '../data/videos';
+
+const { horizontal, vertical } = site.hero;
+const reel = site.hero.reel ? getVideo(site.hero.reel) : undefined;
 ---
 
 <section class="hero" aria-labelledby="hero-title">
@@ -42,19 +45,19 @@ const { horizontal, vertical, fullReel } = site.hero;
     </p>
     <div class="hero__actions">
       <ContactButtons />
-      {fullReel && (
+      {reel && (
         <button class="btn hero__reel" type="button" data-open-reel>
           <Icon name="play" />
-          Ver reel completo
+          Ver showreel
         </button>
       )}
     </div>
   </div>
 
-  {fullReel && (
-    <dialog class="reel" aria-label="Reel de KERAMBIT">
+  {reel && (
+    <dialog class="reel" aria-label={reel.titulo} data-embed={vimeoEmbedUrl(reel)}>
       <button class="mono reel__close" type="button" data-close-reel>Cerrar</button>
-      <video src={fullReel} controls playsinline preload="none"></video>
+      <div class="reel__frame"></div>
     </dialog>
   )}
 </section>
@@ -96,18 +99,26 @@ const { horizontal, vertical, fullReel } = site.hero;
     requestAnimationFrame(tick);
   }
 
-  // Reel completo.
+  // Showreel en Vimeo: el reproductor se crea al abrir y se elimina al cerrar (así deja de sonar).
   const dialog = document.querySelector<HTMLDialogElement>('.reel');
+  const frame = dialog?.querySelector<HTMLElement>('.reel__frame');
   document.querySelector('[data-open-reel]')?.addEventListener('click', () => {
-    dialog?.showModal();
-    dialog?.querySelector('video')?.play();
+    if (!dialog || !frame) return;
+    const iframe = document.createElement('iframe');
+    iframe.src = dialog.dataset.embed ?? '';
+    iframe.title = dialog.getAttribute('aria-label') ?? 'Showreel';
+    iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+    iframe.allowFullscreen = true;
+    frame.replaceChildren(iframe);
+    dialog.showModal();
   });
   const closeReel = () => {
-    dialog?.querySelector('video')?.pause();
+    frame?.replaceChildren();
     dialog?.close();
   };
   document.querySelector('[data-close-reel]')?.addEventListener('click', closeReel);
   dialog?.addEventListener('click', (e) => e.target === dialog && closeReel());
+  dialog?.addEventListener('cancel', () => frame?.replaceChildren());
 </script>
 
 <style>
@@ -219,10 +230,19 @@ const { horizontal, vertical, fullReel } = site.hero;
   .reel::backdrop {
     background: rgb(0 0 0 / 0.9);
   }
-  .reel video {
+  .reel {
+    overflow: visible;
+  }
+  .reel__frame {
     width: 100%;
     aspect-ratio: 16 / 9;
     background: #000;
+  }
+  .reel__frame :global(iframe) {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
   }
   .reel__close {
     position: absolute;
