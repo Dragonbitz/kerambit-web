@@ -2,7 +2,7 @@
 // Vídeo de Vimeo que solo se carga al pulsar "Reproducir":
 // la página no se hace más lenta y Vimeo no entra hasta que el visitante quiere ver el vídeo.
 import Icon from './Icon.astro';
-import { vimeoEmbedUrl, type Video } from '../data/videos';
+import { vimeoEmbedUrl, formatDuracion, videoJsonLd, type Video } from '../data/videos';
 
 interface Props {
   video: Video;
@@ -12,17 +12,24 @@ const { video, label } = Astro.props;
 ---
 
 <figure class="vplayer">
-  <div class="vplayer__frame">
-    <button class="vplayer__play" type="button" data-embed={vimeoEmbedUrl(video)} data-title={video.titulo}>
+  <script type="application/ld+json" set:html={JSON.stringify(videoJsonLd(video, Astro.site))} />
+  <div class="vplayer__frame" style={`aspect-ratio:${video.ratio}`}>
+    <button class="vplayer__play" type="button" data-embed={vimeoEmbedUrl(video)} data-title={video.titulo} aria-label={`Reproducir: ${video.titulo}`}>
+      <img class="vplayer__poster" src={video.poster} alt="" loading="lazy" decoding="async" />
       <span class="vf vf--tl" aria-hidden="true"></span>
       <span class="vf vf--br" aria-hidden="true"></span>
       {label && <span class="mono vplayer__label">{label}</span>}
-      <span class="vplayer__icon"><Icon name="play" /></span>
-      <span class="vplayer__title">{video.titulo}</span>
-      <span class="mono vplayer__cta">Reproducir</span>
+      <span class="mono vplayer__dur">{formatDuracion(video.duracion)}</span>
+      <span class="vplayer__cta">
+        <span class="vplayer__icon"><Icon name="play" /></span>
+        <span class="mono">Reproducir</span>
+      </span>
     </button>
   </div>
-  <figcaption class="vplayer__desc">{video.descripcion}</figcaption>
+  <figcaption class="vplayer__caption">
+    <span class="vplayer__title">{video.titulo}</span>
+    <span class="vplayer__desc">{video.descripcion}</span>
+  </figcaption>
 </figure>
 
 <script>
@@ -42,12 +49,11 @@ const { video, label } = Astro.props;
   .vplayer {
     margin: 0;
     display: grid;
-    gap: 0.9rem;
+    gap: 1rem;
   }
   .vplayer__frame {
     position: relative;
-    aspect-ratio: 16 / 9;
-    background: var(--bg-deep);
+    background: #000;
     border: 1px solid var(--line-soft);
     overflow: hidden;
   }
@@ -63,60 +69,99 @@ const { video, label } = Astro.props;
     inset: 0;
     width: 100%;
     display: grid;
-    place-content: center;
-    justify-items: center;
-    gap: 0.8rem;
-    padding: 1.5rem;
-    background: radial-gradient(ellipse at center, var(--bg-raised) 0%, var(--bg-deep) 75%);
+    place-items: center;
+    padding: 0;
+    background: #000;
     border: 0;
     color: var(--white);
     cursor: pointer;
-    text-align: center;
+  }
+  .vplayer__poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.75;
+    transition: opacity 0.4s var(--ease), transform 0.8s var(--ease);
+  }
+  .vplayer__play:hover .vplayer__poster {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+  .vplayer__cta {
+    position: absolute;
+    left: clamp(14px, 2.5vw, 28px);
+    bottom: clamp(14px, 2.5vw, 28px);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-shadow: 0 1px 3px rgb(0 0 0 / 0.8);
   }
   .vplayer__icon {
-    width: 3.5rem;
-    height: 3.5rem;
+    position: relative;
+    width: 3.25rem;
+    height: 3.25rem;
     display: grid;
     place-items: center;
     border: 1px solid var(--white);
     border-radius: 50%;
+    background: rgb(0 0 0 / 0.35);
+    backdrop-filter: blur(4px);
     transition: background 0.3s var(--ease), color 0.3s var(--ease);
   }
   .vplayer__icon :global(svg) {
-    width: 1.1rem;
-    height: 1.1rem;
+    width: 1.2rem;
+    height: 1.2rem;
     margin-left: 3px;
   }
   .vplayer__play:hover .vplayer__icon {
     background: var(--white);
-    color: var(--bg-deep);
+    color: #000;
   }
-  .vplayer__title {
-    font-family: var(--font-display);
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: clamp(1.2rem, 2.2vw, 1.7rem);
-    line-height: 1.1;
-    max-width: 24ch;
-  }
-  .vplayer__cta {
-    color: var(--text-dim);
-  }
-  .vplayer__label {
+  .vplayer__label,
+  .vplayer__dur {
     position: absolute;
     top: 14px;
-    left: 34px;
     font-size: 0.65rem;
-    color: var(--text-dim);
+    color: var(--white);
+    text-shadow: 0 1px 3px rgb(0 0 0 / 0.8);
+  }
+  .vplayer__label {
+    left: 34px;
+  }
+  .vplayer__dur {
+    right: 16px;
   }
   .vf {
     position: absolute;
     width: 16px;
     height: 16px;
-    border: 0 solid rgb(242 242 240 / 0.45);
+    border: 0 solid rgb(242 242 240 / 0.6);
   }
   .vf--tl { top: 12px; left: 12px; border-top-width: 1px; border-left-width: 1px; }
   .vf--br { bottom: 12px; right: 12px; border-bottom-width: 1px; border-right-width: 1px; }
+  .vplayer__play::after {
+    content: '';
+    position: absolute;
+    inset: 45% 0 0;
+    background: linear-gradient(to top, rgb(0 0 0 / 0.65), transparent);
+    pointer-events: none;
+  }
+  .vplayer__cta {
+    z-index: 1;
+  }
+  .vplayer__caption {
+    display: grid;
+    gap: 0.4rem;
+  }
+  .vplayer__title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+    line-height: 1.1;
+  }
   .vplayer__desc {
     color: var(--text-muted);
     max-width: 60ch;
