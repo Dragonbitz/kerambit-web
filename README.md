@@ -50,7 +50,6 @@ Decidido (oct. 2026):
 
 ## Pendientes apuntados
 
-- Equipo: enlace al perfil de IMDb de cada miembro (campo `imdb` en `src/data/equipo.ts`; el enlace aparece solo cuando se rellena).
 - Equipo: fotos de Jose Álvarez y Víctor Cerezuela.
 - Reel completo para el botón "Ver reel" (lo prepara el equipo).
 - Trabajos: material de cada proyecto.

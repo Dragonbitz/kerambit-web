@@ -37,14 +37,16 @@ const initials = (n: string) =>
             <h2 class="member__name">{m.nombre}</h2>
             <p class="mono member__role">{m.roles.join(' · ')}</p>
             {m.imdb && (
-              <a class="mono member__imdb" href={m.imdb} target="_blank" rel="noopener">
-                IMDb ↗
+              <a class="member__imdb" href={m.imdb} target="_blank" rel="noopener" aria-label={`Perfil de ${m.nombre} en IMDb`}>
+                <span class="imdb-badge" aria-hidden="true">IMDb</span>
+                <span class="mono">Ver perfil ↗</span>
               </a>
             )}
             {m.bio && <p class="member__bio">{m.bio}</p>}
           </li>
         ))}
       </ul>
+      <p class="team__crew">Además, contamos con un equipo de stunts con el que trabajamos en nuestros proyectos.</p>
     </div>
   </section>
 
@@ -62,6 +64,20 @@ const initials = (n: string) =>
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
     gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  /* Misma altura de cargos en escritorio para que las insignias de IMDb queden alineadas */
+  @media (min-width: 700px) {
+    .member__role {
+      min-height: 3.2em;
+    }
+  }
+  .team__crew {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line-soft);
+    max-width: 56ch;
+    color: var(--text-muted);
+    font-size: 1.1rem;
   }
   .member {
     display: grid;
@@ -111,13 +127,28 @@ const initials = (n: string) =>
   }
   .member__imdb {
     justify-self: start;
-    margin-top: 0.25rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.35rem;
     color: var(--text-muted);
     text-decoration: none;
-    border-bottom: 1px solid var(--line);
   }
   .member__imdb:hover {
     color: var(--white);
+  }
+  /* Insignia con el amarillo de IMDb para que se reconozca de un vistazo */
+  .imdb-badge {
+    display: inline-block;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    background: #f5c518;
+    color: #000;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
   }
   .member__bio {
     color: var(--text-muted);

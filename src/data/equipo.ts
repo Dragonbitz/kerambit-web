@@ -16,25 +16,25 @@ export const equipo: Miembro[] = [
   {
     nombre: 'Genaro Rodríguez',
     roles: ['Diseño de acción', 'Action supervisor'],
-    imdb: '', // PENDIENTE: enlace a IMDb
+    imdb: 'https://www.imdb.com/name/nm7451482/',
     foto: '/equipo/genaro.jpg',
   },
   {
     nombre: 'Iván Millán',
     roles: ['Stunt coordinator', 'Stunt performer'],
-    imdb: '', // PENDIENTE: enlace a IMDb
+    imdb: 'https://www.imdb.com/name/nm13778777/',
     foto: '/equipo/ivan.jpg',
   },
   {
     nombre: 'Jose Álvarez',
-    roles: ['IA assistant', 'Stunt performer'],
-    imdb: '', // PENDIENTE: enlace a IMDb
+    roles: ['AI assistant', 'Stunt performer'],
+    imdb: 'https://www.imdb.com/name/nm11000658/',
     // PENDIENTE: foto.
   },
   {
     nombre: 'Víctor Cerezuela',
-    roles: ['IA assistant', 'Stunt performer'],
-    imdb: '', // PENDIENTE: enlace a IMDb
+    roles: ['AI assistant', 'Stunt performer'],
+    imdb: 'https://www.imdb.com/name/nm5895321/',
     // PENDIENTE: foto.
   },
 ];
