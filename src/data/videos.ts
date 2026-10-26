@@ -24,7 +24,7 @@ export const videos: Video[] = [
   {
     slug: 'showreel',
     vimeoId: '1239454335',
-    titulo: 'Showreel KERAMBIT',
+    titulo: 'Showreel Genaro Rodríguez',
     descripcion: 'Selección de escenas de acción diseñadas por Genaro Rodríguez, diseñador de acción al frente de KERAMBIT.',
     poster: '/media/vimeo/1239454335.jpg',
     ratio: '16 / 9',

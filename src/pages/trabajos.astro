@@ -2,22 +2,25 @@
 import Base from '../layouts/Base.astro';
 import PageIntro from '../components/PageIntro.astro';
 import Closing from '../components/Closing.astro';
+import Wip from '../components/Wip.astro';
 import VimeoPlayer from '../components/VimeoPlayer.astro';
-import { videos } from '../data/videos';
+import { getVideo } from '../data/videos';
+
+const showreel = getVideo('showreel');
 ---
 
-<Base title="Trabajos" description="Showreel y previsualizaciones de escenas de acción del equipo de stunts y diseño de acción KERAMBIT.">
+<Base title="Trabajos" description="Showreel y películas en las que ha trabajado el equipo de stunts y diseño de acción KERAMBIT.">
   <PageIntro scene="04" title="Trabajos">
-    <p>Nuestro showreel y algunas previsualizaciones de escenas de acción, con su resultado en pantalla.</p>
+    <p>Una selección de nuestro trabajo en cine.</p>
   </PageIntro>
 
   <section class="works">
     <div class="wrap works__list">
-      {videos.map((v, i) => (
-        <VimeoPlayer video={v} label={`Toma ${String(i + 1).padStart(2, '0')}`} />
-      ))}
+      {showreel && <VimeoPlayer video={showreel} label="Toma 01" />}
     </div>
   </section>
+
+  <Wip items={['Portadas de películas en las que hemos trabajado, u otros vídeos.']} />
 
   <Closing />
 </Base>
