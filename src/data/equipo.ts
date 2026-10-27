@@ -29,7 +29,7 @@ export const equipo: Miembro[] = [
     nombre: 'Jose Álvarez-Boze',
     roles: ['AI assistant', 'Stunt performer'],
     imdb: 'https://www.imdb.com/name/nm11000658/',
-    // PENDIENTE: foto.
+    foto: '/equipo/jose.jpg',
   },
   {
     nombre: 'Víctor Cerezuela',
