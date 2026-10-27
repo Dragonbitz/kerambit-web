@@ -130,7 +130,7 @@ export const servicios: Servicio[] = [
       {
         titulo: 'Rodaje híbrido con IA',
         texto:
-          'Mantiene ese rodaje y usa la IA solo donde reduce riesgo o tiempo. Por ejemplo, un atropello más o menos violento sin que el stunt tenga que darlo todo, o un tiroteo en un espacio cerrado sin fogueo real.',
+          'Mantiene ese rodaje y usa la IA solo donde reduce riesgo o tiempo. Por ejemplo, un atropello más o menos violento sin que el stunt tenga que darlo todo, o un tiroteo en un espacio cerrado sin fogueo real. También podemos generar ciertos planos recurso que falten o que ayuden a contar mejor la historia.',
       },
     ],
     ia: 'Cuál conviene lo decide la escena. El coste lo vemos juntos en una llamada.',
