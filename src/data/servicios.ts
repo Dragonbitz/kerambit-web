@@ -108,6 +108,7 @@ export const servicios: Servicio[] = [
           'Una coreografía también cuenta una historia. Igual que el actor estudia y entiende el texto, tiene que estudiar el movimiento. Por eso buscamos el que mejor se adapta a sus aptitudes. Un actor que conoce la escena rueda más rápido y con menos riesgo. Y cuanta más acción hace él mismo, más libertad tiene la cámara.',
       },
     ],
+    videos: ['entrenamiento-actores'],
     ia: 'Si hay planos que el actor no debe hacer por seguridad, valoramos contigo si se resuelven con su doble o en híbrido con IA.',
     borrador: true,
   },

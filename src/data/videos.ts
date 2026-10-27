@@ -52,6 +52,16 @@ export const videos: Video[] = [
     duracion: 219,
     subido: '2026-10-26',
   },
+  {
+    slug: 'entrenamiento-actores',
+    vimeoId: '1239840453',
+    titulo: 'Entrenamiento con actores',
+    descripcion: 'Entrenamiento de escenas de acción con actores: el equipo de KERAMBIT ensaya la coreografía con ellos en el tatami antes del rodaje.',
+    poster: '/media/vimeo/1239840453.jpg',
+    ratio: '16 / 9',
+    duracion: 39,
+    subido: '2026-10-27',
+  },
 ];
 
 export const formatDuracion = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;

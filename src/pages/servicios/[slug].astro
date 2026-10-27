@@ -155,7 +155,7 @@ const serviceVideos = (s.videos ?? []).map(getVideo).filter((v) => v !== undefin
   }
   .works__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
     gap: clamp(2rem, 4vw, 3rem);
   }
   .relay-section {
