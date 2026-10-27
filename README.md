@@ -24,7 +24,7 @@ Cada `push` a `main` publica una versión nueva en la URL de pruebas.
 | Qué | Archivo |
 | --- | --- |
 | Email, teléfono/WhatsApp, vídeo de portada, reel | `src/config/site.ts` |
-| Modo pruebas (no indexar en Google) | `site.preview` en `src/config/site.ts`, `public/robots.txt` y `public/_headers` |
+| Modo pruebas (no indexar en Google) | `site.preview` en `src/config/site.ts` (controla también `robots.txt`) y `public/_headers` |
 | Menú y textos de interfaz | `src/i18n/ui.ts` |
 | Titular y subtítulo de portada | `src/components/Hero.astro` |
 | Tres beneficios | `src/components/Benefits.astro` |
@@ -57,6 +57,24 @@ Decidido (oct. 2026):
 
 - Trabajos: cartel de Xtremo; carteles de No matarás y Awareness en mejor resolución (ahora ~260 px, de Wikipedia); cartel de The Last Resort cuando exista.
 
+## SEO y GEO
+
+- Mapa del sitio automático: `/sitemap-index.xml` (integración `@astrojs/sitemap`).
+- `robots.txt` generado en `src/pages/robots.txt.ts`: bloquea todo en modo pruebas y, al publicar, permite e indica el mapa del sitio.
+- `llms.txt` para IAs, generado en `src/pages/llms.txt.ts` con los mismos datos que la web.
+- Datos estructurados (`src/data/schema.ts`): Organization + WebSite en portada, Service en cada servicio, FAQPage en preguntas, VideoObject en cada vídeo.
+- Sin dirección física: empresa de servicios; se indica la zona de trabajo (España, Estados Unidos, internacional).
+
+## Checklist de lanzamiento (fase 5)
+
+1. Dominio conectado en Cloudflare (DNS revisados, correo comprobado).
+2. `site` en `astro.config.mjs` → dominio definitivo.
+3. `preview: false` en `src/config/site.ts`.
+4. Borrar la regla `X-Robots-Tag` de `public/_headers`.
+5. Redirecciones 301 desde la web antigua, si estaba indexada.
+6. Dar de alta el dominio en Google Search Console y enviar `/sitemap-index.xml`.
+7. Vimeo: limitar la inserción de vídeos al dominio definitivo (opcional, plan de pago).
+
 ## Decisiones de contenido
 
 - No mencionar en la web: el número de escenas de acción (no siempre lo saben antes de enviar el guion), los idiomas en que se responde, tarifas ni condiciones económicas (se hablan en la llamada).
@@ -67,5 +85,5 @@ Decidido (oct. 2026):
 1. Estructura y portada
 2. Servicios y equipo (textos de servicios en borrador)
 3. Trabajos y preguntas frecuentes ← **actual** (preguntas hechas; trabajos pendientes de material)
-4. Contacto, SEO/GEO y datos estructurados
+4. Contacto, SEO/GEO y datos estructurados ← hecho (formulario aplazado; falta aviso legal)
 5. Dominio y publicación (quitar el modo pruebas)

@@ -4,12 +4,16 @@ import Hero from '../components/Hero.astro';
 import Cut from '../components/Cut.astro';
 import Benefits from '../components/Benefits.astro';
 import Closing from '../components/Closing.astro';
+import { organizationJsonLd, websiteJsonLd } from '../data/schema';
+
+const jsonLd = [organizationJsonLd(Astro.site), websiteJsonLd(Astro.site)];
 ---
 
 <Base
   title="KERAMBIT"
   description="Equipo de stunts y diseño de acción para cine con más de 20 años de experiencia. Rodaje clásico o híbrido con IA, escena a escena."
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <Hero />
   <Cut />
   <Benefits />

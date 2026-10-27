@@ -5,6 +5,7 @@ import Closing from '../../components/Closing.astro';
 import Draft from '../../components/Draft.astro';
 import VimeoPlayer from '../../components/VimeoPlayer.astro';
 import { getVideo } from '../../data/videos';
+import { serviceJsonLd } from '../../data/schema';
 import { servicios, type Servicio } from '../../data/servicios';
 
 export function getStaticPaths() {
@@ -12,10 +13,12 @@ export function getStaticPaths() {
 }
 
 const { s } = Astro.props as { s: Servicio };
+const jsonLd = serviceJsonLd(s, Astro.site);
 const serviceVideos = (s.videos ?? []).map(getVideo).filter((v) => v !== undefined);
 ---
 
 <Base title={s.titulo} description={s.resumen}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <section class="intro">
     <div class="wrap">
       <p class="mono intro__crumb"><a href="/servicios/">Servicios</a> · Tramo {s.tramo}</p>

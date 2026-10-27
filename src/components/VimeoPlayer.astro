@@ -9,10 +9,11 @@ interface Props {
   label?: string;
 }
 const { video, label } = Astro.props;
+const jsonLd = videoJsonLd(video, Astro.site);
 ---
 
 <figure class="vplayer">
-  <script type="application/ld+json" set:html={JSON.stringify(videoJsonLd(video, Astro.site))} />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <div class="vplayer__frame" style={`aspect-ratio:${video.ratio}`}>
     <button class="vplayer__play" type="button" data-embed={vimeoEmbedUrl(video)} data-title={video.titulo} aria-label={`Reproducir: ${video.titulo}`}>
       <img class="vplayer__poster" src={video.poster} alt="" loading="lazy" decoding="async" />
