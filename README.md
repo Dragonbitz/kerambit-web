@@ -55,7 +55,7 @@ Decidido (oct. 2026):
 
 - Formulario de contacto: aplazado (decisión oct. 2026). De momento, contacto por WhatsApp y email.
 
-- Equipo: fotos de Jose Álvarez y Víctor Cerezuela.
+- Equipo: foto de Jose Álvarez-Boze.
 - Trabajos: cartel de Xtremo; carteles de No matarás y Awareness en mejor resolución (ahora ~260 px, de Wikipedia); cartel de The Last Resort cuando exista.
 
 ## Decisiones de contenido

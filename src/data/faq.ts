@@ -41,6 +41,7 @@ export const faq: Pregunta[] = [
     pregunta: '¿Qué diferencia hay entre rodaje clásico y rodaje híbrido con IA?',
     respuesta: [
       'El rodaje clásico graba todo en cámara, como siempre. El híbrido mantiene ese rodaje y usa la IA solo donde reduce riesgo o tiempo: un atropello más o menos violento sin que el stunt tenga que darlo todo, o un tiroteo en un espacio cerrado sin fogueo real.',
+      'También podemos generar ciertos planos recurso que falten o que ayuden a contar mejor la historia.',
       'Cuál conviene lo decide la escena, y el coste lo vemos juntos en la llamada.',
     ],
   },

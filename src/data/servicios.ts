@@ -12,6 +12,8 @@ export interface Servicio {
   slug: string;
   tramo: string;
   titulo: string;
+  /** Frase bajo el título de la página, opcional. */
+  subtitulo?: string;
   /** Nombre corto para el relevo, si el título es largo. */
   corto?: string;
   /** Frase corta para listados y meta description. */
@@ -45,7 +47,7 @@ export const servicios: Servicio[] = [
         titulo: 'Qué recibes',
         puntos: [
           'Un desglose de las escenas de acción del guion.',
-          'Una propuesta de coreografía y de cómo rodar cada escena.',
+          'Una propuesta de coreografía e ideas que encajen en el tono del proyecto.',
           'Lo que necesita cada departamento: armas, vestuario, efectos y ficticios.',
           'Datos para que la productora ajuste el presupuesto.',
         ],
@@ -88,9 +90,10 @@ export const servicios: Servicio[] = [
   {
     slug: 'entrenamiento',
     tramo: '02',
-    titulo: 'Entrenamiento con actores',
+    titulo: 'Entrenamiento con actores y actrices',
+    subtitulo: 'Valoramos las aptitudes de cada actor o actriz.',
     corto: 'Entrenamiento',
-    resumen: 'Preparamos a los actores para que rueden su acción con seguridad y verdad en cámara.',
+    resumen: 'Preparamos a actores y actrices para que rueden su acción con seguridad y verdad en cámara.',
     intro:
       'Antes del rodaje entrenamos con los actores la acción diseñada y la ajustamos a cada uno. Llegan al set sabiendo qué tienen que hacer y cómo hacerlo con seguridad.',
     secciones: [
@@ -98,7 +101,7 @@ export const servicios: Servicio[] = [
         titulo: 'Qué trabajamos',
         puntos: [
           'La coreografía de cada escena, paso a paso.',
-          'Cómo vender cada golpe y cada caída en cámara.',
+          'Adaptar la escena a las aptitudes del actor o actriz.',
           'Qué hace el actor y qué hace su doble.',
         ],
       },

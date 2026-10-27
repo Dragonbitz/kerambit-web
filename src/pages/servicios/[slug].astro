@@ -20,6 +20,7 @@ const serviceVideos = (s.videos ?? []).map(getVideo).filter((v) => v !== undefin
     <div class="wrap">
       <p class="mono intro__crumb"><a href="/servicios/">Servicios</a> · Tramo {s.tramo}</p>
       <h1 class="intro__title">{s.titulo}</h1>
+      {s.subtitulo && <p class="intro__sub">{s.subtitulo}</p>}
       <p class="intro__lead">{s.intro}</p>
       {s.borrador && <Draft />}
     </div>
@@ -85,6 +86,15 @@ const serviceVideos = (s.videos ?? []).map(getVideo).filter((v) => v !== undefin
     margin-top: 1.25rem;
     font-size: clamp(2.8rem, 7.5vw, 6rem);
     max-width: 14ch;
+  }
+  .intro__sub {
+    margin-top: 1rem;
+    font-family: var(--font-display);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    color: var(--text-muted);
   }
   .intro__lead {
     margin: 1.5rem 0 1.25rem;

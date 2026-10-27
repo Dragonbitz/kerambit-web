@@ -55,8 +55,8 @@ export const videos: Video[] = [
   {
     slug: 'entrenamiento-actores',
     vimeoId: '1239840453',
-    titulo: 'Entrenamiento con actores',
-    descripcion: 'Entrenamiento de escenas de acción con actores: el equipo de KERAMBIT ensaya la coreografía con ellos en el tatami antes del rodaje.',
+    titulo: 'Entrenamiento con actores y actrices',
+    descripcion: 'Entrenamiento de escenas de acción con actores y actrices: el equipo de KERAMBIT ensaya la coreografía con ellos en el tatami antes del rodaje.',
     poster: '/media/vimeo/1239840453.jpg',
     ratio: '16 / 9',
     duracion: 39,
