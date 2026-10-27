@@ -59,7 +59,7 @@ export const servicios: Servicio[] = [
       },
     ],
     ia: 'Si una escena lo pide, te señalamos qué planos pueden rodarse en híbrido con IA para reducir riesgo o tiempo. La decisión es tuya, escena a escena.',
-    borrador: true,
+    borrador: false,
   },
   {
     slug: 'previsualizacion',
@@ -85,7 +85,7 @@ export const servicios: Servicio[] = [
     ],
     videos: ['awareness-previsualizacion-vs-final', 'previsualizaciones-compilacion'],
     ia: 'La previsualización puede incluir planos híbridos para que veas cómo quedarían antes de decidir cómo rodarlos.',
-    borrador: true,
+    borrador: false,
   },
   {
     slug: 'entrenamiento',
@@ -113,7 +113,7 @@ export const servicios: Servicio[] = [
     ],
     videos: ['entrenamiento-actores'],
     ia: 'Si hay planos que el actor no debe hacer por seguridad, valoramos contigo si se resuelven con su doble o en híbrido con IA.',
-    borrador: true,
+    borrador: false,
   },
   {
     slug: 'rodaje',
@@ -134,7 +134,7 @@ export const servicios: Servicio[] = [
       },
     ],
     ia: 'Cuál conviene lo decide la escena. El coste lo vemos juntos en una llamada.',
-    borrador: true,
+    borrador: false,
   },
   {
     slug: 'montaje',
@@ -159,7 +159,7 @@ export const servicios: Servicio[] = [
       },
     ],
     ia: 'Si a la escena le falta un plano o necesita cambios, podemos completarla con un reshoot a partir del material rodado.',
-    borrador: true,
+    borrador: false,
   },
   {
     slug: 'reshoots',
@@ -184,7 +184,7 @@ export const servicios: Servicio[] = [
       },
     ],
     ia: 'Es el tramo donde la IA tiene más peso, siempre sobre material real y con las autorizaciones en regla.',
-    borrador: true,
+    borrador: false,
   },
 ];
 
